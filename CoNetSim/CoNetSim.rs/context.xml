@@ -1,0 +1,6 @@
+<context id="CoNetSim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://repast.org/scenario/context">
+	<projection type="network" id="coherence network"></projection>
+	<projection type="continuous space" id="coherence space"></projection>
+	<projection type="grid" id="grid"></projection>
+
+</context>
