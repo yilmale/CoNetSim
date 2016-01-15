@@ -20,6 +20,19 @@ import repast.simphony.space.grid.GridBuilderParameters;
 import repast.simphony.space.grid.SimpleGridAdder;
 import repast.simphony.space.grid.WrapAroundBorders;
 import repast.simphony.util.ContextUtils;
+import edu.uci.ics.jung.algorithms.layout.CircleLayout;
+import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.algorithms.layout.util.Relaxer;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.SparseMultigraph;
+import edu.uci.ics.jung.visualization.BasicVisualizationServer;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
 
 public class CoNetBuilder implements ContextBuilder<Object> {
 	
@@ -42,27 +55,45 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 				new repast.simphony.space.continuous.WrapAroundBorders(), 50,
 				50);
 		
+		SimpleGraphView sgv = new SimpleGraphView(); //We create our graph in here
+		
 		int nodeCount = 10;
 		CoNetNode myNodes[] = new CoNetNode[10];
+		MyNode myNodeList[] = new MyNode[10];
 		for (int i = 0; i < nodeCount; i++) {
-			CoNetNode x = new CoNetNode(i,space,grid);
+			CoNetNode x = new CoNetNode(i,0.1,space,grid);
 			myNodes[i]=x;
+			MyNode n = new MyNode(i);
+			myNodeList[i]=n;
 			context.add(x);
 		}
 		
+		sgv.g.addEdge(new MyLink(2.0, 48,0),myNodeList[0], myNodeList[1]);
 		
 		Network<Object> net = (Network<Object>)context.getProjection("coherence network");
-		for (int i = 0; i < 10; i++) {
-			double connectionP = RandomHelper.nextDoubleFromTo(0, 1);
-			if (connectionP < 0.8) { 
-				int node = RandomHelper.nextIntFromTo(0, 9);
-				net.addEdge(myNodes[i], myNodes[node]);
-			}
-		}
+		double edgeWeight = 1.0;
+		sgv.initialize();
+		
+		sgv.g.addEdge(new MyLink(2.0, 48,0),myNodeList[3], myNodeList[4]);
+		sgv.display();
 		
 		
+		context.add(sgv);
+		
+	/*	
+		Network<Object> net = (Network<Object>)context.getProjection("coherence network");
+		double edgeWeight = 1.0;
+		sgv.addEdge(0, 3); net.addEdge(myNodes[0],myNodes[3], edgeWeight); net.addEdge(myNodes[3],myNodes[0], edgeWeight);
+		sgv.addEdge(1,4); net.addEdge(myNodes[1],myNodes[4], edgeWeight); net.addEdge(myNodes[4],myNodes[1], edgeWeight);
+		sgv.addEdge(2,5); net.addEdge(myNodes[2],myNodes[5], edgeWeight); net.addEdge(myNodes[5],myNodes[2], edgeWeight);
+		sgv.addEdge(3,6); net.addEdge(myNodes[3],myNodes[6], edgeWeight); net.addEdge(myNodes[6],myNodes[3], edgeWeight);
+	*/	
+		
+		
+		   
 		
 		return context;
 	}
 
 }
+

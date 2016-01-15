@@ -12,6 +12,6 @@
     <string>SettingsRegistryId</string>
     <string>Repast.registry</string>
     <string>LastLoadedScenario</string>
-    <string>/Users/yilmaz/Desktop/AUSIM/workspaceRePast/CoNetSim/CoNetSim.rs</string>
+    <string>/Users/yilmaz/git/LocalCoNetSim/CoNetSim/CoNetSim.rs</string>
   </hashtable>
 </simphony.settings.SettingsRegistry>
