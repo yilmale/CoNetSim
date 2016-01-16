@@ -55,40 +55,36 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 				new repast.simphony.space.continuous.WrapAroundBorders(), 50,
 				50);
 		
-		SimpleGraphView sgv = new SimpleGraphView(); //We create our graph in here
+		SimpleGraphView sgv = new SimpleGraphView(); 
 		
-		int nodeCount = 10;
+		int nodeCount=10;
 		CoNetNode myNodes[] = new CoNetNode[10];
-		MyNode myNodeList[] = new MyNode[10];
+		int nCount=0;
 		for (int i = 0; i < nodeCount; i++) {
 			CoNetNode x = new CoNetNode(i,0.1,space,grid);
-			myNodes[i]=x;
-			MyNode n = new MyNode(i);
-			myNodeList[i]=n;
+			myNodes[nCount]=x; nCount++;
 			context.add(x);
+			sgv.addNode(x);		
 		}
 		
-		sgv.g.addEdge(new MyLink(2.0, 48,0),myNodeList[0], myNodeList[1]);
-		
-		Network<Object> net = (Network<Object>)context.getProjection("coherence network");
+			
+		Network<CoNetNode> net = (Network<CoNetNode>)context.getProjection("coherence network");
 		double edgeWeight = 1.0;
-		sgv.initialize();
+		net.addEdge(myNodes[0],myNodes[1],edgeWeight);
+		net.addEdge(myNodes[2],myNodes[3],edgeWeight);
+		net.addEdge(myNodes[0],myNodes[3],edgeWeight);
+		net.addEdge(myNodes[3],myNodes[4],edgeWeight);
 		
-		sgv.g.addEdge(new MyLink(2.0, 48,0),myNodeList[3], myNodeList[4]);
+		sgv.addEdge(0, 1, edgeWeight); sgv.addEdge(2, 3, edgeWeight);
+		sgv.addEdge(0, 3, edgeWeight); sgv.addEdge(3, 4, edgeWeight);
+		
+		sgv.initialize();
+	
 		sgv.display();
 		
 		
 		context.add(sgv);
-		
-	/*	
-		Network<Object> net = (Network<Object>)context.getProjection("coherence network");
-		double edgeWeight = 1.0;
-		sgv.addEdge(0, 3); net.addEdge(myNodes[0],myNodes[3], edgeWeight); net.addEdge(myNodes[3],myNodes[0], edgeWeight);
-		sgv.addEdge(1,4); net.addEdge(myNodes[1],myNodes[4], edgeWeight); net.addEdge(myNodes[4],myNodes[1], edgeWeight);
-		sgv.addEdge(2,5); net.addEdge(myNodes[2],myNodes[5], edgeWeight); net.addEdge(myNodes[5],myNodes[2], edgeWeight);
-		sgv.addEdge(3,6); net.addEdge(myNodes[3],myNodes[6], edgeWeight); net.addEdge(myNodes[6],myNodes[3], edgeWeight);
-	*/	
-		
+
 		
 		   
 		

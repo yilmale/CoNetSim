@@ -1,7 +1,7 @@
 package coNetSim;
 
 class MyNode {
-    int id; // good coding practice would have this as private
+    public int id; // good coding practice would have this as private
     public MyNode(int id) {
         this.id = id;
     }

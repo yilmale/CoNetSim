@@ -16,8 +16,8 @@ import repast.simphony.space.grid.Grid;
 import repast.simphony.util.ContextUtils;
 
 public class CoNetNode {
-	private int id;
-	private double activation;
+	public int id;
+	public double activation;
 	private double decayrate;
 	private ContinuousSpace<Object> space;
 	private Grid<Object> grid;
@@ -41,7 +41,7 @@ public class CoNetNode {
 		Context<Object> context = ContextUtils.getContext(this);
 		Network<Object> net = (Network<Object>)context.getProjection("coherence network");
 		Iterator<RepastEdge<Object>> myInEdges= net.getInEdges(this).iterator();
-		System.out.println("reached here");
+
 		double netFlow=0;
 		while (myInEdges.hasNext()) {
 			RepastEdge<Object> x = myInEdges.next();
