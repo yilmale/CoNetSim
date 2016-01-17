@@ -24,7 +24,7 @@ public class CoNetNode {
 	private double MIN;
 	private double MAX;
 	
-	public CoNetNode(int id, double activation, ContinuousSpace<Object> space, Grid<Object> grid) {
+	public CoNetNode(int id, double activation) {
 		this.id = id;
 		this.space=space;
 		this.grid=grid;

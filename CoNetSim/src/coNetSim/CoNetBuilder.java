@@ -36,6 +36,9 @@ import javax.swing.JFrame;
 
 public class CoNetBuilder implements ContextBuilder<Object> {
 	
+	double[][] adjMatrix;
+	double[] activations;
+	
 	@Override
 	public Context build(Context<Object> context) { 
 		
@@ -55,13 +58,43 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 				new repast.simphony.space.continuous.WrapAroundBorders(), 50,
 				50);
 		
-		SimpleGraphView sgv = new SimpleGraphView(); 
 		
-		int nodeCount=10;
-		CoNetNode myNodes[] = new CoNetNode[10];
+		int size = 10;
+		double density = 0.5;
+		
+		adjMatrix = new double[size][size];
+		activations = new double[size];
+		
+		for (int i=0; i<size; i++) activations[i]=0.1;
+		activations[0]=1.0;
+		
+		for (int i=0; i<size; i++) 
+			for (int j=0; j<=i; j++) {
+				double connection = RandomHelper.nextDoubleFromTo(0,1);
+				if (connection <= (density/5)) {
+					adjMatrix[i][j] = -1.0;
+					adjMatrix[j][i] = -1.0;
+				}
+				else 
+				if ((connection > (density/5)) & (connection <= (density))) {
+						adjMatrix[i][j] = 1.0;
+						adjMatrix[j][i] = 1.0;
+				}
+				else {
+					adjMatrix[i][j] = 0;
+					adjMatrix[j][i] = 0;
+				}
+			}
+		
+		for (int i=0; i<size; i++) adjMatrix[i][i]=0;
+		
+		SimpleGraphView sgv = new SimpleGraphView(size); 
+		
+		int nodeCount=size;
+		CoNetNode myNodes[] = new CoNetNode[size];
 		int nCount=0;
 		for (int i = 0; i < nodeCount; i++) {
-			CoNetNode x = new CoNetNode(i,0.1,space,grid);
+			CoNetNode x = new CoNetNode(i,activations[i]);
 			myNodes[nCount]=x; nCount++;
 			context.add(x);
 			sgv.addNode(x);		
@@ -69,14 +102,16 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		
 			
 		Network<CoNetNode> net = (Network<CoNetNode>)context.getProjection("coherence network");
-		double edgeWeight = 1.0;
-		net.addEdge(myNodes[0],myNodes[1],edgeWeight);
-		net.addEdge(myNodes[2],myNodes[3],edgeWeight);
-		net.addEdge(myNodes[0],myNodes[3],edgeWeight);
-		net.addEdge(myNodes[3],myNodes[4],edgeWeight);
 		
-		sgv.addEdge(0, 1, edgeWeight); sgv.addEdge(2, 3, edgeWeight);
-		sgv.addEdge(0, 3, edgeWeight); sgv.addEdge(3, 4, edgeWeight);
+		for (int i=0; i<size; i++)
+			for (int j=0; j<=i; j++) {
+				if (adjMatrix[i][j] != 0) {
+					sgv.addEdge(i, j, adjMatrix[i][j]);
+					net.addEdge(myNodes[i],myNodes[j],adjMatrix[i][j]);
+					net.addEdge(myNodes[j],myNodes[i],adjMatrix[i][j]);
+				}			
+			}
+		
 		
 		sgv.initialize();
 	

@@ -44,12 +44,12 @@ public class SimpleGraphView {
 	double activations[];
 	int nodeCount;
     /** Creates a new instance of SimpleGraphView */
-    public SimpleGraphView() {
+    public SimpleGraphView(int size) {
         // Graph<V, E> where V is the type of the vertices and E is the type of the edges
         g = new UndirectedSparseMultigraph<Integer, Integer>();
-        myLinks = new MyLink[10];
-        activations = new double[10];
-        for (int i=0;i<10; i++) activations[i]=0;
+        myLinks = new MyLink[size*size];
+        activations = new double[size];
+        for (int i=0;i<size; i++) activations[i]=0;
         nodeCount=0;
     }
     
