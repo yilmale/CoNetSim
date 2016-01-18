@@ -40,7 +40,8 @@ public class CoordinatorAsynch {
 		for (int i=0; i<networkNodes.size(); i++)
 			for (int j=0; j<i; j++) {
 				RepastEdge<CoNetNode> e = net.getEdge(networkNodes.get(i), networkNodes.get(j));
-				nH=nH+(networkNodes.get(i).activation*networkNodes.get(j).activation*e.getWeight());
+				if (e!=null) {
+				nH=nH+(networkNodes.get(i).activation*networkNodes.get(j).activation*e.getWeight());}
 			}
 	
 		this.networkHarmony=nH;
