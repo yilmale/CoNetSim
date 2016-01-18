@@ -35,6 +35,10 @@ public class CoNetNode {
 				
 	}
 	
+	public double getActivation() {
+		return this.activation;
+	}
+	
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
 	  if (this.updateMode == 0) {

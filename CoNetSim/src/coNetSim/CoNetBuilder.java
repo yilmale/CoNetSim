@@ -192,6 +192,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		
 		SimpleGraphView sgv = new SimpleGraphView(size); 
 		
+		
 		int nodeCount=size;
 		CoNetNode myNodes[] = new CoNetNode[size];
 		int nCount=0;
@@ -231,6 +232,8 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		
 		
 		context.add(sgv);
+		CoordinatorAsynch ca = new CoordinatorAsynch();
+		context.add(ca);
 	}
 
 }

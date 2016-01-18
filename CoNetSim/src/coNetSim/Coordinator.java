@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.engine.schedule.ISchedule;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
@@ -11,10 +13,13 @@ import repast.simphony.util.ContextUtils;
 
 public class Coordinator {
 	public ArrayList<CoNetNode> registeredNodes;
-	final int MAXITERATION = 50;
+	private double networkHarmony;
+	final int MAXITERATION = 1;
+	final double THRESHOLD = 0.001;
 	
 	public Coordinator(int size) {
 		registeredNodes = new ArrayList<CoNetNode>();
+		this.networkHarmony=0;
 	
 	}
 	
@@ -22,6 +27,26 @@ public class Coordinator {
 		registeredNodes.add(cn);
 		System.out.println("Registered node " + registeredNodes.get(registeredNodes.size()-1).id);
 	}
+	
+	public double getHarmony() {
+		return this.networkHarmony;
+	}
+	
+	
+	public void updateNetworkHarmony() {
+		Context<Object> context = ContextUtils.getContext(this);
+		Network<CoNetNode> net = (Network<CoNetNode>)context.getProjection("coherence network");
+		double nH=0;
+		for (int i=0; i<registeredNodes.size(); i++)
+			for (int j=0; j<i; j++) {
+				RepastEdge<CoNetNode> e = net.getEdge(registeredNodes.get(i), registeredNodes.get(j));
+				if (e!=null)
+					nH=nH+(registeredNodes.get(i).activation*registeredNodes.get(j).activation*e.getWeight());
+			}
+	
+		this.networkHarmony=nH;
+	}
+	
 	
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
@@ -39,9 +64,9 @@ public class Coordinator {
 		int count = 0;
 		Context<Object> context = ContextUtils.getContext(this);
 		Network<CoNetNode> net = (Network<CoNetNode>)context.getProjection("coherence network");
-		
+		double maxChange = 0;
 		while (count < MAXITERATION)  {
-		  double maxChange = 0;
+		  maxChange = 0;
 		  while (nItr.hasNext()) {		
 			CoNetNode y = nItr.next();
 			System.out.println("Updating activation of "+ y.id);
@@ -50,7 +75,7 @@ public class Coordinator {
 			while (myInEdges.hasNext()) {
 				RepastEdge<CoNetNode> e = myInEdges.next();
 				CoNetNode mySource = e.getSource();
-				System.out.println("flow from node "+ mySource.id + " is " + activationsatT[mySource.id]);
+				//System.out.println("flow from node "+ mySource.id + " is " + activationsatT[mySource.id]);
 				netFlow=netFlow+e.getWeight()*activationsatT[mySource.id];
 			}
 			
@@ -82,11 +107,12 @@ public class Coordinator {
 		  if (maxChange < 0.001) break;
 		}
 		System.out.println("Completed " + count + " iterations");
-		Iterator<CoNetNode> node1Itr = registeredNodes.iterator();
-		
-		while (node1Itr.hasNext()) {
-			CoNetNode x = node1Itr.next();
-			System.out.println("Activation of node " + x.id + " is " + x.activation);
+		if (maxChange < THRESHOLD) {
+			ISchedule schedule = RunEnvironment.getInstance().getCurrentSchedule();
+			double stableTime = schedule.getTickCount();
+			System.out.println("The network reached equilibrium at time "+ stableTime);
 		}
+		updateNetworkHarmony();
+		System.out.println("Network harmony is " + this.networkHarmony);
 	}
 }
