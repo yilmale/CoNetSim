@@ -976,3 +976,114 @@ java.lang.ArrayIndexOutOfBoundsException: 5
 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+FATAL [Thread-8] 2016-01-17 16:31:54,816 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.NullPointerException
+	at saf.v3d.scene.VEdge2D.update(VEdge2D.java:87)
+	at repast.simphony.visualizationOGL2D.NetworkLayerOGL2D.update(NetworkLayerOGL2D.java:96)
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:408)
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.setPause(DisplayOGL2D.java:382)
+	at repast.simphony.render.RendererManager.setPause(RendererManager.java:49)
+	at repast.simphony.ui.GUIScheduleRunner.go(GUIScheduleRunner.java:134)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:48)
+	at java.lang.Thread.run(Thread.java:745)
+FATAL [Thread-8] 2016-01-17 18:32:10,152 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72)
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:333)
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38)
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205)
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231)
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:352)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.reflect.InvocationTargetException
+	at coNetSim.Coordinator$$FastClassByCGLIB$$36d3d2a8.invoke(<generated>)
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53)
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69)
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.ArrayList$Itr.next(ArrayList.java:854)
+	at coNetSim.Coordinator.step(Coordinator.java:73)
+	... 10 more
+FATAL [Thread-8] 2016-01-17 18:36:45,430 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72)
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:333)
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38)
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205)
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231)
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:352)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.reflect.InvocationTargetException
+	at coNetSim.Coordinator$$FastClassByCGLIB$$36d3d2a8.invoke(<generated>)
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53)
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69)
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.ArrayList$Itr.next(ArrayList.java:854)
+	at coNetSim.Coordinator.step(Coordinator.java:74)
+	... 10 more
+FATAL [Thread-8] 2016-01-17 18:39:45,511 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72)
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:333)
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38)
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205)
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231)
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:352)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.reflect.InvocationTargetException
+	at coNetSim.Coordinator$$FastClassByCGLIB$$36d3d2a8.invoke(<generated>)
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53)
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69)
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.ArrayList$Itr.next(ArrayList.java:854)
+	at coNetSim.Coordinator.step(Coordinator.java:75)
+	... 10 more
+FATAL [Thread-8] 2016-01-17 18:46:01,520 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72)
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:333)
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38)
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205)
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231)
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:352)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.reflect.InvocationTargetException
+	at coNetSim.Coordinator$$FastClassByCGLIB$$36d3d2a8.invoke(<generated>)
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53)
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69)
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.ArrayList$Itr.next(ArrayList.java:854)
+	at coNetSim.Coordinator.step(Coordinator.java:77)
+	... 10 more
+FATAL [Thread-8] 2016-01-17 18:53:07,881 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72)
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:333)
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38)
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205)
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231)
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:352)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.reflect.InvocationTargetException
+	at coNetSim.Coordinator$$FastClassByCGLIB$$36d3d2a8.invoke(<generated>)
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53)
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69)
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.ArrayList$Itr.next(ArrayList.java:854)
+	at coNetSim.Coordinator.step(Coordinator.java:81)
+	... 10 more

@@ -18,30 +18,31 @@ import repast.simphony.util.ContextUtils;
 public class CoNetNode {
 	public int id;
 	public double activation;
-	private double decayrate;
-	private ContinuousSpace<Object> space;
-	private Grid<Object> grid;
-	private double MIN;
-	private double MAX;
+	public double decayrate;
+	public double MIN;
+	public double MAX;
+	public int updateMode;
+	public boolean evidence;
 	
-	public CoNetNode(int id, double activation) {
+	public CoNetNode(int id, double activation, int updateModel, boolean evd) {
 		this.id = id;
-		this.space=space;
-		this.grid=grid;
 		this.activation=activation;
 		this.decayrate = 0.05;
 		this.MIN = -1;
 		this.MAX=1;
+		this.updateMode = updateModel;
+		this.evidence = evd;
 				
 	}
 	
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
+	  if (this.updateMode == 0) {
 		System.out.println("CoNet Node" + this.id + " is activated with..." + this.activation);
 		Context<Object> context = ContextUtils.getContext(this);
 		Network<Object> net = (Network<Object>)context.getProjection("coherence network");
 		Iterator<RepastEdge<Object>> myInEdges= net.getInEdges(this).iterator();
-
+		
 		double netFlow=0;
 		while (myInEdges.hasNext()) {
 			RepastEdge<Object> x = myInEdges.next();
@@ -49,17 +50,19 @@ public class CoNetNode {
 			netFlow=netFlow+x.getWeight()*mySource.activation;
 		}
 		
-		if (netFlow > 0) {
+		if ((netFlow > 0) && (this.evidence == false)) {
 			this.activation = (this.activation*(1-this.decayrate)) + (netFlow*(this.MAX-this.activation));
 			this.activation = Math.min(1, this.activation);
 		}
-		else
+		else 
+		if ((netFlow <= 0) && (this.evidence == false))
 		{
 			this.activation = (this.activation*(1-this.decayrate)) + (netFlow*(this.activation-this.MIN));
 			this.activation = Math.max(-1, this.activation);
 		}
 		
 		System.out.println("CoNet Node" + this.id + " is updated to..." + this.activation);
+	  }
 	}
 
 }
