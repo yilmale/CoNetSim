@@ -18,14 +18,12 @@ public class CoordinatorAsynch {
 	public CoordinatorAsynch() {
 		this.networkHarmony=0;	
 		this.networkNodes = new ArrayList<CoNetNode>();
-		Context<Object> context = ContextUtils.getContext(this);
-		Network<CoNetNode> net = (Network<CoNetNode>)context.getProjection("coherence network");
 		
-		Iterator<CoNetNode> netNodes = net.getNodes().iterator();
-		while (netNodes.hasNext()) {
-			CoNetNode x = netNodes.next();
-			networkNodes.add(x);
-		}
+	}
+	
+	public void register(CoNetNode in) {
+		networkNodes.add(in);
+		System.out.println("Registered node " + networkNodes.get(networkNodes.size()-1).id);
 	}
 	
 	public double getHarmony() {

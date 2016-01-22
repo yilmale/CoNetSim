@@ -63,33 +63,36 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 				new repast.simphony.space.continuous.WrapAroundBorders(), 50,
 				50);
 		
-		int updateMode = SYNCHRONOUS;
+		Parameters p = RunEnvironment.getInstance().getParameters();
+		int numNodes = (Integer)p.getValue("numberOfNodes");
+		double density = (double)p.getValue("density");
+		double inhibitionRatio = (double)p.getValue("inhibitionRatio");
 		
-		if (updateMode == ASYNCHRONOUS) AsyncronousUpdate(context);
-		else SyncronousUpdate(context);
+		int updateMode = ASYNCHRONOUS;
+		
+		if (updateMode == ASYNCHRONOUS) AsyncronousUpdate(context,numNodes,density,inhibitionRatio);
+		else SyncronousUpdate(context,numNodes,density,inhibitionRatio);
 		
 		return context;
 	}
 	
-	public void SyncronousUpdate(Context<Object> context) {
-		int size = 20;
-		double density = 0.5;
+	public void SyncronousUpdate(Context<Object> context, int numNodes, double density, double inhibitionRatio) {
 		
-		adjMatrix = new double[size][size];
-		activations = new double[size];
+		adjMatrix = new double[numNodes][numNodes];
+		activations = new double[numNodes];
 		
-		for (int i=0; i<size; i++) activations[i]=0.01;
+		for (int i=0; i<numNodes; i++) activations[i]=0.01;
 		activations[0]=1;
 		
-		for (int i=0; i<size; i++) 
+		for (int i=0; i<numNodes; i++) 
 			for (int j=0; j<=i; j++) {
 				double connection = RandomHelper.nextDoubleFromTo(0,1);
-				if (connection <= (density/5)) {
+				if (connection <= (density*inhibitionRatio)) {
 					adjMatrix[i][j] = -0.2;
 					adjMatrix[j][i] = -0.2;
 				}
 				else 
-				if ((connection > (density/5)) & (connection <= (density))) {
+				if ((connection > (density*inhibitionRatio)) & (connection <= (density))) {
 						adjMatrix[i][j] = 0.05;
 						adjMatrix[j][i] = 0.05;
 				}
@@ -99,13 +102,13 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 				}
 			}
 		
-		for (int i=0; i<size; i++) adjMatrix[i][i]=0;
+		for (int i=0; i<numNodes; i++) adjMatrix[i][i]=0;
 		
-		SimpleGraphView sgv = new SimpleGraphView(size); 
+		SimpleGraphView sgv = new SimpleGraphView(numNodes); 
 		
-		int nodeCount=size;
-		CoNetNode myNodes[] = new CoNetNode[size];
-		Coordinator synchUpdater = new Coordinator(size);
+		int nodeCount=numNodes;
+		CoNetNode myNodes[] = new CoNetNode[numNodes];
+		Coordinator synchUpdater = new Coordinator(numNodes);
 		int nCount=0;
 		for (int i = 0; i < nodeCount; i++) {
 			CoNetNode x;
@@ -124,7 +127,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 			
 		Network<CoNetNode> net = (Network<CoNetNode>)context.getProjection("coherence network");
 		
-		for (int i=0; i<size; i++)
+		for (int i=0; i<numNodes; i++)
 			for (int j=0; j<=i; j++) {
 				if (adjMatrix[i][j] != 0) {
 					sgv.addEdge(i, j, adjMatrix[i][j]);
@@ -140,7 +143,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 				}			
 			}
 		
-		for (int i=0; i<size; i++) {
+		for (int i=0; i<numNodes; i++) {
 			CoNetNode m = myNodes[i];
 			System.out.println("Node " + m.id + " has initial activation= " + m.activation);
 			Iterator<RepastEdge<CoNetNode>> myInEdges= net.getInEdges(m).iterator();
@@ -160,25 +163,24 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		context.add(synchUpdater);
 	}
 	
-	public void AsyncronousUpdate(Context<Object> context) {
-		int size = 10;
-		double density = 0.5;
+	public void AsyncronousUpdate(Context<Object> context, int numNodes, double density, double inhibitionRatio) {
+
 		
-		adjMatrix = new double[size][size];
-		activations = new double[size];
+		adjMatrix = new double[numNodes][numNodes];
+		activations = new double[numNodes];
 		
-		for (int i=0; i<size; i++) activations[i]=0.01;
+		for (int i=0; i<numNodes; i++) activations[i]=0.01;
 		activations[0]=1.0;
 		
-		for (int i=0; i<size; i++) 
+		for (int i=0; i<numNodes; i++) 
 			for (int j=0; j<=i; j++) {
 				double connection = RandomHelper.nextDoubleFromTo(0,1);
-				if (connection <= (density/5)) {
+				if (connection <= density*inhibitionRatio) {
 					adjMatrix[i][j] = -0.2;
 					adjMatrix[j][i] = -0.2;
 				}
 				else 
-				if ((connection > (density/5)) & (connection <= (density))) {
+				if ((connection > (density*inhibitionRatio)) & (connection <= (density))) {
 						adjMatrix[i][j] = 0.05;
 						adjMatrix[j][i] = 0.05;
 				}
@@ -188,13 +190,13 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 				}
 			}
 		
-		for (int i=0; i<size; i++) adjMatrix[i][i]=0;
+		for (int i=0; i<numNodes; i++) adjMatrix[i][i]=0;
 		
-		SimpleGraphView sgv = new SimpleGraphView(size); 
+		SimpleGraphView sgv = new SimpleGraphView(numNodes); 
 		
-		
-		int nodeCount=size;
-		CoNetNode myNodes[] = new CoNetNode[size];
+		CoordinatorAsynch ca = new CoordinatorAsynch();
+		int nodeCount=numNodes;
+		CoNetNode myNodes[] = new CoNetNode[numNodes];
 		int nCount=0;
 		for (int i = 0; i < nodeCount; i++) {
 			CoNetNode x;
@@ -205,6 +207,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 				x=  new CoNetNode(i,activations[i],ASYNCHRONOUS,false);
 			}
 			myNodes[nCount]=x; nCount++;
+			ca.register(x);
 			context.add(x);
 			sgv.addNode(x);		
 		}
@@ -212,7 +215,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 			
 		Network<CoNetNode> net = (Network<CoNetNode>)context.getProjection("coherence network");
 		
-		for (int i=0; i<size; i++)
+		for (int i=0; i<numNodes; i++)
 			for (int j=0; j<=i; j++) {
 				if (adjMatrix[i][j] != 0) {
 					sgv.addEdge(i, j, adjMatrix[i][j]);
@@ -232,7 +235,8 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		
 		
 		context.add(sgv);
-		CoordinatorAsynch ca = new CoordinatorAsynch();
+
+		
 		context.add(ca);
 	}
 
