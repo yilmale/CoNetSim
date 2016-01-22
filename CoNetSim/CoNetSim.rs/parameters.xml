@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <parameters>
 
-	<parameter name="randomSeed" displayName="Default Random Seed" type="int" defaultValue="__NULL__" />
+	<parameter name="randomSeed" displayName="Default Random Seed" type="int" defaultValue="__NULL__" /><parameter
+		name="numberOfNodes" displayName="Number of Nodes" type="int"
+		defaultValue="5">
+</parameter>
+	<parameter name="density" displayName="Network Density"
+		type="double" defaultValue="0.5">
+	</parameter>
+	<parameter name="inhibitionRatio" displayName="Inhibition Ratio"
+		type="double" defaultValue="0.0">
+	</parameter>
 
 </parameters>
