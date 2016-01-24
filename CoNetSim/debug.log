@@ -1,108 +1,403 @@
-ERROR [AWT-EventQueue-0] 2016-01-21 23:45:41,934 repast.simphony.ui.RSApplication - Error while initializing simulation
-java.lang.NullPointerException
-	at coNetSim.CoordinatorAsynch.<init>(CoordinatorAsynch.java:22)
-	at coNetSim.CoNetBuilder.AsyncronousUpdate(CoNetBuilder.java:238)
-	at coNetSim.CoNetBuilder.build(CoNetBuilder.java:73)
-	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41)
-	at repast.simphony.dataLoader.engine.DataLoaderControllerAction.runInitialize(DataLoaderControllerAction.java:48)
-	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:214)
-	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:1)
-	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:292)
-	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295)
-	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295)
-	at repast.simphony.util.collections.NaryTree.preOrderTraversal(NaryTree.java:288)
-	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:212)
-	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:383)
-	at repast.simphony.ui.RSApplication.initSim(RSApplication.java:157)
-	at repast.simphony.ui.action.InitRun.actionPerformed(InitRun.java:17)
-	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
-	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2346)
-	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
-	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
-	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
-	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:289)
-	at java.awt.Component.processMouseEvent(Component.java:6525)
-	at javax.swing.JComponent.processMouseEvent(JComponent.java:3322)
-	at java.awt.Component.processEvent(Component.java:6290)
-	at java.awt.Container.processEvent(Container.java:2234)
-	at java.awt.Component.dispatchEventImpl(Component.java:4881)
-	at java.awt.Container.dispatchEventImpl(Container.java:2292)
-	at java.awt.Component.dispatchEvent(Component.java:4703)
-	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4898)
-	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4533)
-	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4462)
-	at java.awt.Container.dispatchEventImpl(Container.java:2278)
-	at java.awt.Window.dispatchEventImpl(Window.java:2739)
-	at java.awt.Component.dispatchEvent(Component.java:4703)
-	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:751)
-	at java.awt.EventQueue.access$500(EventQueue.java:97)
-	at java.awt.EventQueue$3.run(EventQueue.java:702)
-	at java.awt.EventQueue$3.run(EventQueue.java:696)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:75)
-	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:86)
-	at java.awt.EventQueue$4.run(EventQueue.java:724)
-	at java.awt.EventQueue$4.run(EventQueue.java:722)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:75)
-	at java.awt.EventQueue.dispatchEvent(EventQueue.java:721)
-	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
-	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
-	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
-	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
-ERROR [AWT-EventQueue-0] 2016-01-21 23:49:14,571 repast.simphony.ui.RSApplication - Error while initializing simulation
-java.lang.NullPointerException
-	at coNetSim.CoordinatorAsynch.<init>(CoordinatorAsynch.java:23)
-	at coNetSim.CoNetBuilder.AsyncronousUpdate(CoNetBuilder.java:238)
-	at coNetSim.CoNetBuilder.build(CoNetBuilder.java:73)
-	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41)
-	at repast.simphony.dataLoader.engine.DataLoaderControllerAction.runInitialize(DataLoaderControllerAction.java:48)
-	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:214)
-	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:1)
-	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:292)
-	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295)
-	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295)
-	at repast.simphony.util.collections.NaryTree.preOrderTraversal(NaryTree.java:288)
-	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:212)
-	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:383)
-	at repast.simphony.ui.RSApplication.initSim(RSApplication.java:157)
-	at repast.simphony.ui.action.InitRun.actionPerformed(InitRun.java:17)
-	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
-	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2346)
-	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
-	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
-	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
-	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:289)
-	at java.awt.Component.processMouseEvent(Component.java:6525)
-	at javax.swing.JComponent.processMouseEvent(JComponent.java:3322)
-	at java.awt.Component.processEvent(Component.java:6290)
-	at java.awt.Container.processEvent(Container.java:2234)
-	at java.awt.Component.dispatchEventImpl(Component.java:4881)
-	at java.awt.Container.dispatchEventImpl(Container.java:2292)
-	at java.awt.Component.dispatchEvent(Component.java:4703)
-	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4898)
-	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4533)
-	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4462)
-	at java.awt.Container.dispatchEventImpl(Container.java:2278)
-	at java.awt.Window.dispatchEventImpl(Window.java:2739)
-	at java.awt.Component.dispatchEvent(Component.java:4703)
-	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:751)
-	at java.awt.EventQueue.access$500(EventQueue.java:97)
-	at java.awt.EventQueue$3.run(EventQueue.java:702)
-	at java.awt.EventQueue$3.run(EventQueue.java:696)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:75)
-	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:86)
-	at java.awt.EventQueue$4.run(EventQueue.java:724)
-	at java.awt.EventQueue$4.run(EventQueue.java:722)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:75)
-	at java.awt.EventQueue.dispatchEvent(EventQueue.java:721)
-	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
-	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
-	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
-	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6364652446545342
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018346067865094 old activation=0.8018339467695795 diff=6.600169298875969E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524685048713858 old activation=-0.8524685870023241 diff=8.213093827258433E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018346067865094 old activation=0.8018339467695795 diff=6.600169298875969E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6364730729949585 old activation=0.6364652446545342 diff=7.828340424231861E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 7.828340424231861E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 81.0
+INFO  [Thread-1] 2016-01-24 15:13:14,843 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973214505357385
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018346067865094
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524685048713858
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018346067865094
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6364730729949585
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018351745801671 old activation=0.8018346067865094 diff=5.677936576464759E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524684317784452 old activation=-0.8524685048713858 diff=7.30929405889924E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,846 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,847 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018351745801671 old activation=0.8018346067865094 diff=5.677936576464759E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,847 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,847 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6364798499553783 old activation=0.6364730729949585 diff=6.776960419840883E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,847 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,847 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 6.776960419840883E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,847 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,847 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 82.0
+INFO  [Thread-1] 2016-01-24 15:13:14,847 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973219137107312
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018351745801671
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524684317784452
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018351745801671
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6364798499553783
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018356633605 old activation=0.8018351745801671 diff=4.887803329856055E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524683669736626 old activation=-0.8524684317784452 diff=6.4804782651251E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018356633605 old activation=0.8018351745801671 diff=4.887803329856055E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6364857166458641 old activation=0.6364798499553783 diff=5.866690485745174E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 5.866690485745174E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 83.0
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.29732231311953145
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018356633605
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524683669736626
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018356633605
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6364857166458641
+INFO  [Thread-1] 2016-01-24 15:13:14,860 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.801836084372956 old activation=0.8018356633605 diff=4.210124558978734E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524683096999767 old activation=-0.8524683669736626 diff=5.72736859050238E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.801836084372956 old activation=0.8018356633605 diff=4.210124558978734E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6364907952595806 old activation=0.6364857166458641 diff=5.078613716569258E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 5.078613716569258E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 84.0
+INFO  [Thread-1] 2016-01-24 15:13:14,861 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973226576830553
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.801836084372956
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524683096999767
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.801836084372956
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6364907952595806
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018364472063916 old activation=0.801836084372956 diff=3.6283343562981685E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.852468259219163 old activation=-0.8524683096999767 diff=5.048081364034118E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018364472063916 old activation=0.801836084372956 diff=3.6283343562981685E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6364951916036087 old activation=0.6364907952595806 diff=4.396344028045895E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 4.396344028045895E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 85.0
+INFO  [Thread-1] 2016-01-24 15:13:14,862 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973229550419585
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018364472063916
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.852468259219163
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018364472063916
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6364951916036087
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018367600494134 old activation=0.8018364472063916 diff=3.128430218213296E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524682148285615 old activation=-0.852468259219163 diff=4.439060152794383E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018367600494134 old activation=0.8018364472063916 diff=3.128430218213296E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6364989972923747 old activation=0.6364951916036087 diff=3.805688766012061E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 3.805688766012061E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,869 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,870 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 86.0
+INFO  [Thread-1] 2016-01-24 15:13:14,870 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.29732321174755827
+INFO  [Thread-1] 2016-01-24 15:13:14,872 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,872 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018367600494134
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524682148285615
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018367600494134
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6364989972923747
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018370299044446 old activation=0.8018367600494134 diff=2.69855031209687E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524681758710837 old activation=-0.8524682148285615 diff=3.895747779925074E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,874 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018370299044446 old activation=0.8018367600494134 diff=2.69855031209687E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,875 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,875 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365022916483886 old activation=0.6364989972923747 diff=3.2943560138720684E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,875 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,875 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 3.2943560138720684E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,875 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 87.0
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.29732343342272016
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018370299044446
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524681758710837
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018370299044446
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365022916483886
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018372627670167 old activation=0.8018370299044446 diff=2.3286257211374561E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524681417404394 old activation=-0.8524681758710837 diff=3.413064431079249E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018372627670167 old activation=0.8018370299044446 diff=2.3286257211374561E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365051433491317 old activation=0.6365022916483886 diff=2.8517007431005936E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 2.8517007431005936E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 88.0
+INFO  [Thread-1] 2016-01-24 15:13:14,876 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.29732362489776193
+INFO  [Thread-1] 2016-01-24 15:13:14,879 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018372627670167
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524681417404394
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018372627670167
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365051433491317
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018374637763527 old activation=0.8018372627670167 diff=2.0100933595390558E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524681118830251 old activation=-0.8524681417404394 diff=2.985741431871247E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,880 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,881 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018374637763527 old activation=0.8018372627670167 diff=2.0100933595390558E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,881 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,881 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365076118538319 old activation=0.6365051433491317 diff=2.4685047002037663E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,881 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,881 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 2.4685047002037663E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,881 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,881 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 89.0
+INFO  [Thread-1] 2016-01-24 15:13:14,881 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973237903255118
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018374637763527
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524681118830251
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018374637763527
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365076118538319
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018376373421705 old activation=0.8018374637763527 diff=1.7356581782923541E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524680857975333 old activation=-0.8524681118830251 diff=2.6085491766636437E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018376373421705 old activation=0.8018374637763527 diff=1.7356581782923541E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,884 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,885 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365097486394212 old activation=0.6365076118538319 diff=2.1367855893572596E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,885 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,885 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 2.1367855893572596E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,885 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,885 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 90.0
+INFO  [Thread-1] 2016-01-24 15:13:14,885 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973239332789221
+INFO  [Thread-1] 2016-01-24 15:13:14,887 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018376373421705
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524680857975333
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018376373421705
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365097486394212
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018377872517257 old activation=0.8018376373421705 diff=1.4990955521376748E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524680630330609 old activation=-0.8524680857975333 diff=2.2764472418224102E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018377872517257 old activation=0.8018376373421705 diff=1.4990955521376748E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.636511598271096 old activation=0.6365097486394212 diff=1.8496316748217723E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 1.8496316748217723E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 91.0
+INFO  [Thread-1] 2016-01-24 15:13:14,888 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973240568340413
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018377872517257
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524680630330609
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018377872517257
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.636511598271096
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018379167603797 old activation=0.8018377872517257 diff=1.2950865402316936E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,891 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524680431862777 old activation=-0.8524680630330609 diff=1.984678321687028E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,892 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,892 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018379167603797 old activation=0.8018377872517257 diff=1.2950865402316936E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,892 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,892 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365131993295424 old activation=0.636511598271096 diff=1.6010584463765909E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,892 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,892 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 1.6010584463765909E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,892 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,892 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 92.0
+INFO  [Thread-1] 2016-01-24 15:13:14,892 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.29732416364066677
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018379167603797
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524680431862777
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018379167603797
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365131993295424
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018380286683927 old activation=0.8018379167603797 diff=1.1190801296745434E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524680258980601 old activation=-0.8524680431862777 diff=1.7288217524225047E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018380286683927 old activation=0.8018379167603797 diff=1.1190801296745434E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365145852139584 old activation=0.6365131993295424 diff=1.3858844160052897E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 1.3858844160052897E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 93.0
+INFO  [Thread-1] 2016-01-24 15:13:14,894 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973242559826055
+INFO  [Thread-1] 2016-01-24 15:13:14,896 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,896 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018380286683927
+INFO  [Thread-1] 2016-01-24 15:13:14,896 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524680258980601
+INFO  [Thread-1] 2016-01-24 15:13:14,896 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018380286683927
+INFO  [Thread-1] 2016-01-24 15:13:14,896 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365145852139584
+INFO  [Thread-1] 2016-01-24 15:13:14,896 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,897 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,897 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018381253861636 old activation=0.8018380286683927 diff=9.671777090325406E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524680108498748 old activation=-0.8524680258980601 diff=1.5048185364463507E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018381253861636 old activation=0.8018380286683927 diff=9.671777090325406E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365157848374681 old activation=0.6365145852139584 diff=1.199623509640091E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 1.199623509640091E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 94.0
+INFO  [Thread-1] 2016-01-24 15:13:14,898 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.29732433582914475
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018381253861636
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524680108498748
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018381253861636
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365157848374681
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018382089897578 old activation=0.8018381253861636 diff=8.360359415870988E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524679977601061 old activation=-0.8524680108498748 diff=1.3089768713392402E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018382089897578 old activation=0.8018381253861636 diff=8.360359415870988E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365168232293132 old activation=0.6365157848374681 diff=1.0383918451761787E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 1.0383918451761787E-6
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 95.0
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.29732440487907774
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018382089897578
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524679977601061
+INFO  [Thread-1] 2016-01-24 15:13:14,917 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018382089897578
+INFO  [Thread-1] 2016-01-24 15:13:14,918 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365168232293132
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.801838281268245 old activation=0.8018382089897578 diff=7.227848719537633E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524679863804646 old activation=-0.8524679977601061 diff=1.1379641451370048E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.801838281268245 old activation=0.8018382089897578 diff=7.227848719537633E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365177220562939 old activation=0.6365168232293132 diff=8.988269806220472E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 8.988269806220472E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,919 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,920 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 96.0
+INFO  [Thread-1] 2016-01-24 15:13:14,920 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.29732446459840467
+INFO  [Thread-1] 2016-01-24 15:13:14,931 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,931 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.801838281268245
+INFO  [Thread-1] 2016-01-24 15:13:14,931 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524679863804646
+INFO  [Thread-1] 2016-01-24 15:13:14,931 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.801838281268245
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365177220562939
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018383437641178 old activation=0.801838281268245 diff=6.249587281015323E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524679764925598 old activation=-0.8524679863804646 diff=9.88790482825408E-9
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018383437641178 old activation=0.801838281268245 diff=6.249587281015323E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365185000742665 old activation=0.6365177220562939 diff=7.780179726024627E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 7.780179726024627E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 97.0
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973245162526548
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018383437641178
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524679764925598
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018383437641178
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365185000742665
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,932 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.80183839780785 old activation=0.8018383437641178 diff=5.404373226713943E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524679679046878 old activation=-0.8524679764925598 diff=8.58787196911237E-9
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.80183839780785 old activation=0.8018383437641178 diff=5.404373226713943E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.636519173519066 old activation=0.6365185000742665 diff=6.734447994816151E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 6.734447994816151E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 98.0
+INFO  [Thread-1] 2016-01-24 15:13:14,933 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973245609346254
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.80183839780785
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524679679046878
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.80183839780785
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.636519173519066
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018384445474814 old activation=0.80183839780785 diff=4.673963138746018E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524679604488652 old activation=-0.8524679679046878 diff=7.455822625956898E-9
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018384445474814 old activation=0.80183839780785 diff=4.673963138746018E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365197564449679 old activation=0.636519173519066 diff=5.829259019929367E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 5.829259019929367E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 99.0
+INFO  [Thread-1] 2016-01-24 15:13:14,937 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973245995882078
+INFO  [Thread-1] 2016-01-24 15:13:14,983 repast.simphony.batch.ssh.LocalSession - Cloned node 0with activation 1.0
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Cloned node 1with activation 0.8018384445474814
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Cloned node 2with activation -0.8524679604488652
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Cloned node 3with activation 0.8018384445474814
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Cloned node 4with activation 0.6365197564449679
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Updating activation of 0
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Node 0new activation=1.0 old activation=1.0 diff=0.0
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Updating activation of 1
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Node 1new activation=0.8018384849739736 old activation=0.8018384445474814 diff=4.042649215385552E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Updating activation of 2
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Node 2new activation=-0.8524679539781158 old activation=-0.8524679604488652 diff=6.47074938076031E-9
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Updating activation of 3
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Node 3new activation=0.8018384849739736 old activation=0.8018384445474814 diff=4.042649215385552E-8
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Updating activation of 4
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Node 4new activation=0.6365202610177211 old activation=0.6365197564449679 diff=5.045727531349797E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Copying back new activations for the next iteration
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - The maximum activation differential in this iteration was 5.045727531349797E-7
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Completed 1 iterations
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - The network reached equilibrium at time 100.0
+INFO  [Thread-1] 2016-01-24 15:13:14,984 repast.simphony.batch.ssh.LocalSession - Network harmony is 0.2973246330288693
+INFO  [pool-2-thread-1] 2016-01-24 15:13:45,446 repast.simphony.batch.ssh.LocalDonePoller - Polled /var/folders/yn/4x45q97s6vn_dqcwswzp834r0000gp/T/simphony_model_1453669961637 for DONE:  no
+INFO  [pool-2-thread-1] 2016-01-24 15:14:45,455 repast.simphony.batch.ssh.LocalDonePoller - Polled /var/folders/yn/4x45q97s6vn_dqcwswzp834r0000gp/T/simphony_model_1453669961637 for DONE:  yes
+INFO  [SwingWorker-pool-1-thread-1] 2016-01-24 15:14:45,458 repast.simphony.batch.ssh.SessionsDriver - Run Time: 2.0103
+INFO  [SwingWorker-pool-1-thread-1] 2016-01-24 15:14:45,481 repast.simphony.batch.ssh.LocalSession - Finding output on localhost in /var/folders/yn/4x45q97s6vn_dqcwswzp834r0000gp/T/simphony_model_1453669961637
+INFO  [SwingWorker-pool-1-thread-1] 2016-01-24 15:14:45,522 repast.simphony.batch.ssh.SessionsDriver - Aggregating output into /Users/yilmaz/git/LocalCoNetSim/CoNetSim/output
+INFO  [SwingWorker-pool-1-thread-1] 2016-01-24 15:14:45,543 repast.simphony.batch.ssh.SessionsDriver - Get Output Time: 0.0014
+INFO  [SwingWorker-pool-1-thread-1] 2016-01-24 15:14:45,543 repast.simphony.batch.ssh.SessionsDriver - Finished. Elapsed Time: 2.0654

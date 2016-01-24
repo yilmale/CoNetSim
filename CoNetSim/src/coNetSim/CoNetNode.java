@@ -23,6 +23,8 @@ public class CoNetNode {
 	public double MAX;
 	public int updateMode;
 	public boolean evidence;
+	final int SYNCHRONOUS = 1;
+	final int ASYNCHRONOUS = 0;
 	
 	public CoNetNode(int id, double activation, int updateModel, boolean evd) {
 		this.id = id;
@@ -41,7 +43,7 @@ public class CoNetNode {
 	
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
-	  if (this.updateMode == 0) {
+	  if (this.updateMode == ASYNCHRONOUS) {
 		System.out.println("CoNet Node" + this.id + " is activated with..." + this.activation);
 		Context<Object> context = ContextUtils.getContext(this);
 		Network<Object> net = (Network<Object>)context.getProjection("coherence network");

@@ -18,6 +18,7 @@ import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridBuilderParameters;
+import repast.simphony.space.grid.RandomGridAdder;
 import repast.simphony.space.grid.SimpleGridAdder;
 import repast.simphony.space.grid.WrapAroundBorders;
 import repast.simphony.util.ContextUtils;
@@ -44,17 +45,17 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 	final int SYNCHRONOUS = 1;
 	final int ASYNCHRONOUS = 0;
 	
+	
 	@Override
 	public Context build(Context<Object> context) { 
-		
-		GridFactory gridFactory = GridFactoryFinder.createGridFactory(null);
-		Grid<Object> grid = gridFactory.createGrid("grid", context,
-				new GridBuilderParameters<Object>(new WrapAroundBorders(),
-						new SimpleGridAdder<Object>(), true, 50, 50));
 		
 		NetworkBuilder<Object> netBuilder = new NetworkBuilder<Object>(
 				"coherence network", context, true);
 		netBuilder.buildNetwork();
+		
+		GridFactoryFinder.createGridFactory(null).createGrid("grid", context, 
+				new GridBuilderParameters<Object>(new WrapAroundBorders(), 
+						new RandomGridAdder<Object>(), false, 50, 50));
 
 		ContinuousSpaceFactory spaceFactory = ContinuousSpaceFactoryFinder
 				.createContinuousSpaceFactory(null);
@@ -67,34 +68,45 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		int numNodes = (Integer)p.getValue("numberOfNodes");
 		double density = (double)p.getValue("density");
 		double inhibitionRatio = (double)p.getValue("inhibitionRatio");
+		String activationMode = (String)p.getValue("activationMode");
+		double defaultExcitation = (double)p.getValue("defaultExcitation");
+		double defaultInhibition = (double)p.getValue("defaultInhibition");
+		double defaultActivation = (double)p.getValue("defaultActivation");
+		double activationThreshold = (double)p.getValue("activationThreshold");
 		
-		int updateMode = ASYNCHRONOUS;
+		RunEnvironment.getInstance().endAt(100);
 		
-		if (updateMode == ASYNCHRONOUS) AsyncronousUpdate(context,numNodes,density,inhibitionRatio);
-		else SyncronousUpdate(context,numNodes,density,inhibitionRatio);
+		if (activationMode.compareTo("SYNCHRONOUS")==0) 
+			SyncronousUpdate(context,numNodes,density,inhibitionRatio,
+					defaultExcitation,defaultInhibition,defaultActivation,activationThreshold); 
+		else AsyncronousUpdate(context,numNodes,density,inhibitionRatio,
+				defaultExcitation,defaultInhibition,defaultActivation,activationThreshold);
+		
 		
 		return context;
 	}
 	
-	public void SyncronousUpdate(Context<Object> context, int numNodes, double density, double inhibitionRatio) {
+	public void SyncronousUpdate(Context<Object> context, int numNodes, double density, 
+			double inhibitionRatio, double excitationStrength, double inhibitionStrength, 
+			double defaultActivation,double activationThreshold) {
 		
 		adjMatrix = new double[numNodes][numNodes];
 		activations = new double[numNodes];
 		
-		for (int i=0; i<numNodes; i++) activations[i]=0.01;
+		for (int i=0; i<numNodes; i++) activations[i]=defaultActivation;
 		activations[0]=1;
 		
 		for (int i=0; i<numNodes; i++) 
 			for (int j=0; j<=i; j++) {
 				double connection = RandomHelper.nextDoubleFromTo(0,1);
 				if (connection <= (density*inhibitionRatio)) {
-					adjMatrix[i][j] = -0.2;
-					adjMatrix[j][i] = -0.2;
+					adjMatrix[i][j] = inhibitionStrength;
+					adjMatrix[j][i] = inhibitionStrength;
 				}
 				else 
 				if ((connection > (density*inhibitionRatio)) & (connection <= (density))) {
-						adjMatrix[i][j] = 0.05;
-						adjMatrix[j][i] = 0.05;
+						adjMatrix[i][j] =excitationStrength;
+						adjMatrix[j][i] = excitationStrength;
 				}
 				else {
 					adjMatrix[i][j] = 0;
@@ -104,7 +116,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		
 		for (int i=0; i<numNodes; i++) adjMatrix[i][i]=0;
 		
-		SimpleGraphView sgv = new SimpleGraphView(numNodes); 
+		SimpleGraphView sgv = new SimpleGraphView(numNodes,activationThreshold); 
 		
 		int nodeCount=numNodes;
 		CoNetNode myNodes[] = new CoNetNode[numNodes];
@@ -163,26 +175,28 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		context.add(synchUpdater);
 	}
 	
-	public void AsyncronousUpdate(Context<Object> context, int numNodes, double density, double inhibitionRatio) {
+	public void AsyncronousUpdate(Context<Object> context, int numNodes, double density, 
+			double inhibitionRatio, double excitationStrength, double inhibitionStrength, 
+			double defaultActivation, double activationThreshold) {
 
 		
 		adjMatrix = new double[numNodes][numNodes];
 		activations = new double[numNodes];
 		
-		for (int i=0; i<numNodes; i++) activations[i]=0.01;
+		for (int i=0; i<numNodes; i++) activations[i]=defaultActivation;
 		activations[0]=1.0;
 		
 		for (int i=0; i<numNodes; i++) 
 			for (int j=0; j<=i; j++) {
 				double connection = RandomHelper.nextDoubleFromTo(0,1);
 				if (connection <= density*inhibitionRatio) {
-					adjMatrix[i][j] = -0.2;
-					adjMatrix[j][i] = -0.2;
+					adjMatrix[i][j] = inhibitionStrength;
+					adjMatrix[j][i] = inhibitionStrength;
 				}
 				else 
 				if ((connection > (density*inhibitionRatio)) & (connection <= (density))) {
-						adjMatrix[i][j] = 0.05;
-						adjMatrix[j][i] = 0.05;
+						adjMatrix[i][j] = excitationStrength;
+						adjMatrix[j][i] = excitationStrength;
 				}
 				else {
 					adjMatrix[i][j] = 0;
@@ -192,7 +206,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		
 		for (int i=0; i<numNodes; i++) adjMatrix[i][i]=0;
 		
-		SimpleGraphView sgv = new SimpleGraphView(numNodes); 
+		SimpleGraphView sgv = new SimpleGraphView(numNodes,activationThreshold); 
 		
 		CoordinatorAsynch ca = new CoordinatorAsynch();
 		int nodeCount=numNodes;

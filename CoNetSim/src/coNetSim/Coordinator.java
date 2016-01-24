@@ -16,10 +16,14 @@ public class Coordinator {
 	private double networkHarmony;
 	final int MAXITERATION = 1;
 	final double THRESHOLD = 0.001;
+	boolean equilibriumReached;
+	double equilibriumTime;
 	
 	public Coordinator(int size) {
 		registeredNodes = new ArrayList<CoNetNode>();
 		this.networkHarmony=0;
+		this.equilibriumReached=false;
+		this.equilibriumTime=-1;
 	
 	}
 	
@@ -30,6 +34,10 @@ public class Coordinator {
 	
 	public double getHarmony() {
 		return this.networkHarmony;
+	}
+	
+	public double getEquilibriumTime() {
+		return this.equilibriumTime;
 	}
 	
 	
@@ -52,6 +60,7 @@ public class Coordinator {
 	public void step() {
 		Iterator<CoNetNode> nodeItr = registeredNodes.iterator();
 		double[] activationsatT = new double[registeredNodes.size()];
+		this.equilibriumReached=false;
 		int index=0;
 		while (nodeItr.hasNext()) {
 			CoNetNode x = nodeItr.next();
@@ -104,13 +113,15 @@ public class Coordinator {
 				activationsatT[x.id]=x.activation;
 			}
 		  System.out.println("The maximum activation differential in this iteration was " + maxChange);
-		  if (maxChange < 0.001) break;
+		  if (maxChange < THRESHOLD) break;
 		}
 		System.out.println("Completed " + count + " iterations");
-		if (maxChange < THRESHOLD) {
+		if ((maxChange < THRESHOLD) && (this.equilibriumReached==false)) {
 			ISchedule schedule = RunEnvironment.getInstance().getCurrentSchedule();
 			double stableTime = schedule.getTickCount();
 			System.out.println("The network reached equilibrium at time "+ stableTime);
+			this.equilibriumReached=true;
+			this.equilibriumTime=stableTime;
 		}
 		updateNetworkHarmony();
 		System.out.println("Network harmony is " + this.networkHarmony);

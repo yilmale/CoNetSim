@@ -9,7 +9,16 @@
 		type="double" defaultValue="0.5">
 	</parameter>
 	<parameter name="inhibitionRatio" displayName="Inhibition Ratio"
-		type="double" defaultValue="0.0">
+		type="double" defaultValue="0.25">
+	</parameter>
+	<parameter name="activationMode" displayName="Activation Mode"
+		type="String" defaultValue="SYNCHRONOUS">
+	</parameter>
+	<parameter name="defaultExcitation" displayName="Excitation Strength" type="double" defaultValue="0.05"></parameter>
+	<parameter name="defaultInhibition" displayName="Inhibition Strength" type="double" defaultValue="-0.2"></parameter>
+	<parameter name="defaultActivation" displayName="Default Activation" type="double" defaultValue="0.01"></parameter>
+	<parameter name="activationThreshold"
+		displayName="Activation Threshold" type="double" defaultValue="0">
 	</parameter>
 
 </parameters>

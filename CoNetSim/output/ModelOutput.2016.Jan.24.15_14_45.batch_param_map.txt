@@ -1,0 +1,6 @@
+"run","randomSeed","density","activationMode","defaultExcitation","defaultActivation","numberOfNodes","inhibitionRatio","defaultInhibition","activationThreshold"
+1,1971044049,0.1,"SYNCHRONOUS",0.05,0.01,5,0.25,-0.2,0.0
+3,1971047182,0.3,"SYNCHRONOUS",0.05,0.01,5,0.25,-0.2,0.0
+5,1971048199,0.5,"SYNCHRONOUS",0.05,0.01,5,0.25,-0.2,0.0
+2,1971040992,0.2,"SYNCHRONOUS",0.05,0.01,5,0.25,-0.2,0.0
+4,1971043638,0.4,"SYNCHRONOUS",0.05,0.01,5,0.25,-0.2,0.0

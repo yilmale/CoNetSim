@@ -43,14 +43,18 @@ public class SimpleGraphView {
 	MyLink myLinks[];
 	double activations[];
 	int nodeCount;
+	double activationThreshold;
+	
+	
     /** Creates a new instance of SimpleGraphView */
-    public SimpleGraphView(int size) {
+    public SimpleGraphView(int size, double actThreshold) {
         // Graph<V, E> where V is the type of the vertices and E is the type of the edges
         g = new UndirectedSparseMultigraph<Integer, Integer>();
         myLinks = new MyLink[size*size];
         activations = new double[size];
         for (int i=0;i<size; i++) activations[i]=0;
         nodeCount=0;
+        this.activationThreshold=actThreshold;
     }
     
     public void addNode(CoNetNode cNode) {
@@ -97,7 +101,7 @@ public class SimpleGraphView {
         
         Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
             public Paint transform(Integer i) {
-                if (activations[i]>0.30) return Color.RED;
+                if (activations[i]>activationThreshold) return Color.RED;
                 else return Color.BLUE;
             }
         };  
