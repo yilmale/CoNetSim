@@ -20,9 +20,9 @@ public class CoordinatorSynch extends Coordinator{
 	
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
+	  if (this.equilibriumReached==false) {	
 		Iterator<CoNetNode> nodeItr = registeredNodes.iterator();
 		double[] activationsatT = new double[registeredNodes.size()];
-		this.equilibriumReached=false;
 		int index=0;
 		while (nodeItr.hasNext()) {
 			CoNetNode x = nodeItr.next();
@@ -87,6 +87,7 @@ public class CoordinatorSynch extends Coordinator{
 		}
 		updateNetworkHarmony();
 		System.out.println("Network harmony is " + this.networkHarmony);
-	}
+	   }
+	  }
 
 }

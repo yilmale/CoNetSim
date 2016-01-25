@@ -30,7 +30,7 @@ public class CoNetNode {
 	public CoNetNode(int id, double activation, int updateModel, boolean evd) {
 		this.id = id;
 		this.activation=activation;
-		this.old_activation=activation;
+		this.old_activation=0;
 		this.decayrate = 0.05;
 		this.MIN = -1;
 		this.MAX=1;
@@ -46,7 +46,7 @@ public class CoNetNode {
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
 	  if (this.updateMode == ASYNCHRONOUS) {
-		this.old_activation=this.activation;
+		double temp=this.activation;
 		System.out.println("CoNet Node" + this.id + " is activated with..." + this.activation);
 		Context<Object> context = ContextUtils.getContext(this);
 		Network<Object> net = (Network<Object>)context.getProjection("coherence network");
@@ -69,7 +69,7 @@ public class CoNetNode {
 			this.activation = (this.activation*(1-this.decayrate)) + (netFlow*(this.activation-this.MIN));
 			this.activation = Math.max(-1, this.activation);
 		}
-		
+		this.old_activation=temp;
 		System.out.println("CoNet Node" + this.id + " is updated to..." + this.activation);
 	  }
 	}

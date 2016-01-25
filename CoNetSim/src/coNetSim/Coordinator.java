@@ -55,9 +55,14 @@ public class Coordinator {
 		this.networkHarmony=nH;
 	}
 	
-	public double activationDiff() {
+	public double computeActivationDiff() {
 		double aDiff=0;
-		
+		Iterator nodeItr = registeredNodes.iterator();
+		while (nodeItr.hasNext()) {
+			CoNetNode x= (CoNetNode) nodeItr.next();
+			if (Math.abs(x.activation - x.old_activation) > aDiff) 
+				aDiff=Math.abs(x.activation - x.old_activation);
+		}
 		return aDiff;
 	}
 	

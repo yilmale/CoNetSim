@@ -3,6 +3,8 @@ package coNetSim;
 import java.util.ArrayList;
 
 import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.engine.schedule.ISchedule;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
@@ -25,10 +27,18 @@ public class CoordinatorAsynch extends Coordinator {
 	}
 	
 	
-	
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
-		updateNetworkHarmony();
+		if (this.equilibriumReached == false) {
+			updateNetworkHarmony();
+			double activationUpdate=computeActivationDiff();
+			System.out.println("The activation differential is " + activationUpdate);
+			if (activationUpdate < THRESHOLD) {
+				this.equilibriumReached=true;
+				ISchedule schedule = RunEnvironment.getInstance().getCurrentSchedule();
+				this.equilibriumTime=schedule.getTickCount();
+			}
+		}
 	}
 
 }
