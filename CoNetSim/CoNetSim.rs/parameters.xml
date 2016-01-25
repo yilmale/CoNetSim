@@ -18,7 +18,7 @@
 	<parameter name="defaultInhibition" displayName="Inhibition Strength" type="double" defaultValue="-0.2"></parameter>
 	<parameter name="defaultActivation" displayName="Default Activation" type="double" defaultValue="0.01"></parameter>
 	<parameter name="activationThreshold"
-		displayName="Activation Threshold" type="double" defaultValue="0">
+		displayName="Activation Threshold" type="double" defaultValue="0.3">
 	</parameter>
 
 </parameters>

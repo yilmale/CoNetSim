@@ -18,6 +18,7 @@ import repast.simphony.util.ContextUtils;
 public class CoNetNode {
 	public int id;
 	public double activation;
+	public double old_activation;
 	public double decayrate;
 	public double MIN;
 	public double MAX;
@@ -29,6 +30,7 @@ public class CoNetNode {
 	public CoNetNode(int id, double activation, int updateModel, boolean evd) {
 		this.id = id;
 		this.activation=activation;
+		this.old_activation=activation;
 		this.decayrate = 0.05;
 		this.MIN = -1;
 		this.MAX=1;
@@ -44,6 +46,7 @@ public class CoNetNode {
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
 	  if (this.updateMode == ASYNCHRONOUS) {
+		this.old_activation=this.activation;
 		System.out.println("CoNet Node" + this.id + " is activated with..." + this.activation);
 		Context<Object> context = ContextUtils.getContext(this);
 		Network<Object> net = (Network<Object>)context.getProjection("coherence network");

@@ -120,7 +120,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		
 		int nodeCount=numNodes;
 		CoNetNode myNodes[] = new CoNetNode[numNodes];
-		Coordinator synchUpdater = new Coordinator(numNodes);
+		Coordinator synchUpdater = new CoordinatorSynch(numNodes);
 		int nCount=0;
 		for (int i = 0; i < nodeCount; i++) {
 			CoNetNode x;
@@ -208,7 +208,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		
 		SimpleGraphView sgv = new SimpleGraphView(numNodes,activationThreshold); 
 		
-		CoordinatorAsynch ca = new CoordinatorAsynch();
+		Coordinator ca = new CoordinatorAsynch(numNodes);
 		int nodeCount=numNodes;
 		CoNetNode myNodes[] = new CoNetNode[numNodes];
 		int nCount=0;
