@@ -27,7 +27,7 @@ public class CoordinatorSynch extends Coordinator{
 		while (nodeItr.hasNext()) {
 			CoNetNode x = nodeItr.next();
 			activationsatT[index]=x.activation;
-			System.out.println("Cloned node "+ x.id + "with activation "+ x.activation);
+			//System.out.println("Cloned node "+ x.id + "with activation "+ x.activation);
 			index++;
 		}
 		
