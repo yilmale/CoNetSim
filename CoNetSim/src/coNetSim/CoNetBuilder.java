@@ -37,6 +37,7 @@ import java.util.Iterator;
 
 import javax.swing.JFrame;
 
+
 public class CoNetBuilder implements ContextBuilder<Object> {
 	
 	double[][] adjMatrix;
@@ -74,19 +75,42 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		double defaultActivation = (double)p.getValue("defaultActivation");
 		double activationThreshold = (double)p.getValue("activationThreshold");
 		
+		int numberofNodeTypes = 1;
+		
 		RunEnvironment.getInstance().endAt(100);
 		
+		AsynchronousUpdateGrid(context,numNodes,defaultExcitation,numberofNodeTypes,defaultExcitation, defaultInhibition);
+		/*
 		if (activationMode.compareTo("SYNCHRONOUS")==0) 
-			SyncronousUpdate(context,numNodes,density,inhibitionRatio,
+			SyncronousUpdateNet(context,numNodes,density,inhibitionRatio,
 					defaultExcitation,defaultInhibition,defaultActivation,activationThreshold); 
-		else AsyncronousUpdate(context,numNodes,density,inhibitionRatio,
+		else AsyncronousUpdateNet(context,numNodes,density,inhibitionRatio,
 				defaultExcitation,defaultInhibition,defaultActivation,activationThreshold);
-		
-		
+		*/
 		return context;
 	}
 	
-	public void SyncronousUpdate(Context<Object> context, int numNodes, double density, 
+	
+	public void AsynchronousUpdateGrid(Context<Object> context, int numNodes, double defaultActivation, 
+			int numberofNodeTypes, double defaultExcitation, double defaultInhibition) {
+		activations = new double[numNodes];	
+		for (int i=0; i<numNodes; i++) activations[i]=defaultActivation;
+		activations[0]=1;
+		
+	  // Create the initial agents and add to the context.
+		for(int i=0; i<numNodes; i++){
+			CoNetNodeGrid x;
+			if (activations[i]==1) {
+				x = new CoNetNodeGrid(i,activations[i], true, numberofNodeTypes, defaultExcitation, defaultInhibition);
+			}
+			else { 
+				x = new CoNetNodeGrid(i,activations[i], false, numberofNodeTypes, defaultExcitation, defaultInhibition);
+			}
+			context.add(x);
+		}
+	}
+	
+	public void SyncronousUpdateNet(Context<Object> context, int numNodes, double density, 
 			double inhibitionRatio, double excitationStrength, double inhibitionStrength, 
 			double defaultActivation,double activationThreshold) {
 		
@@ -175,7 +199,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		context.add(synchUpdater);
 	}
 	
-	public void AsyncronousUpdate(Context<Object> context, int numNodes, double density, 
+	public void AsyncronousUpdateNet(Context<Object> context, int numNodes, double density, 
 			double inhibitionRatio, double excitationStrength, double inhibitionStrength, 
 			double defaultActivation, double activationThreshold) {
 

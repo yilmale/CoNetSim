@@ -15,49 +15,65 @@ import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.util.ContextUtils;
 
-public class CoNetNode {
+public class CoNetNodeGrid {
 	public int id;
 	public double activation;
-	public double old_activation;
 	public double decayrate;
 	public double MIN;
 	public double MAX;
-	public int updateMode;
-	public int contextType;
+	public double excitationStrength;
+	public double inhibitionStrength;
 	public boolean evidence;
-	final int SYNCHRONOUS = 1;
-	final int ASYNCHRONOUS = 0;
+	public int type;
+	public double vBlue;
+	public double vRed;
 	
-	public CoNetNode(int id, double activation, int updateModel, boolean evd) {
+	public CoNetNodeGrid(int id, double activation, boolean evd, int numberOfNodeTypes, double dExcite, double dInhibit) {
 		this.id = id;
 		this.activation=activation;
-		this.old_activation=0;
 		this.decayrate = 0.05;
 		this.MIN = -1;
 		this.MAX=1;
-		this.updateMode = updateModel;
 		this.evidence = evd;
+		this.type = RandomHelper.nextIntFromTo(0, numberOfNodeTypes-1);
+		this.excitationStrength=dExcite;
+		this.inhibitionStrength=dInhibit;
+		if (this.evidence==true) {this.vBlue=0; this.vRed=1;}
+		else {this.vBlue=1; this.vRed=0;}
+		
 	}
 	
 	public double getActivation() {
 		return this.activation;
 	}
 	
+	public double getBActivation() {
+		if (this.activation > 0) 
+		   return 10*(1-this.activation);
+		else return 10;
+	}
+	
+	public double getRActivation() {
+		if (this.activation > 0) return 10*this.activation;
+		else return 0;
+	}
+	
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
-	 
-	  if (this.updateMode == ASYNCHRONOUS) {
-		double temp=this.activation;
-		System.out.println("CoNet Node" + this.id + " is activated with..." + this.activation);
-		Context<Object> context = ContextUtils.getContext(this);
-		Network<Object> net = (Network<Object>)context.getProjection("coherence network");
-		Iterator<RepastEdge<Object>> myInEdges= net.getInEdges(this).iterator();
+		Context<CoNetNodeGrid> context = (Context)ContextUtils.getContext(this);
+		Grid<CoNetNodeGrid> grid = (Grid)context.getProjection("grid");
 		
-		double netFlow=0;
-		while (myInEdges.hasNext()) {
-			RepastEdge<Object> x = myInEdges.next();
-			CoNetNode mySource = (CoNetNode) x.getSource();
-			netFlow=netFlow+x.getWeight()*mySource.activation;
+		VNQuery<CoNetNodeGrid> query = new VNQuery<CoNetNodeGrid>(grid, this);
+		
+		double netFlow =0;
+		for (CoNetNodeGrid agent : query.query()) {
+			if (agent.type == this.type) {
+				netFlow = netFlow + this.excitationStrength*agent.activation;
+			}
+			else 
+			{
+				netFlow = netFlow + this.inhibitionStrength*agent.activation;
+			}
 		}
 		
 		if ((netFlow > 0) && (this.evidence == false)) {
@@ -70,10 +86,13 @@ public class CoNetNode {
 			this.activation = (this.activation*(1-this.decayrate)) + (netFlow*(this.activation-this.MIN));
 			this.activation = Math.max(-1, this.activation);
 		}
-		this.old_activation=temp;
-		System.out.println("CoNet Node" + this.id + " is updated to..." + this.activation);
-	  }
-	 }
+	}
 	
 
 }
+
+
+
+
+
+
