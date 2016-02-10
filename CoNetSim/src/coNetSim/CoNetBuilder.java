@@ -75,7 +75,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		double defaultActivation = (double)p.getValue("defaultActivation");
 		double activationThreshold = (double)p.getValue("activationThreshold");
 		
-		int numberofNodeTypes = 1;
+		int numberofNodeTypes = 10;
 		
 		RunEnvironment.getInstance().endAt(100);
 		
@@ -94,8 +94,12 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 	public void AsynchronousUpdateGrid(Context<Object> context, int numNodes, double defaultActivation, 
 			int numberofNodeTypes, double defaultExcitation, double defaultInhibition) {
 		activations = new double[numNodes];	
-		for (int i=0; i<numNodes; i++) activations[i]=defaultActivation;
-		activations[0]=1;
+		for (int i=0; i<numNodes; i++) {
+			double rnd = RandomHelper.nextDoubleFromTo(0, 1);
+			if (rnd > 0.01) activations[i]=defaultActivation;
+			else activations[i]=1;
+		}
+		
 		
 	  // Create the initial agents and add to the context.
 		for(int i=0; i<numNodes; i++){
