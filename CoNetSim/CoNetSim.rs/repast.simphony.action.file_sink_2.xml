@@ -1,0 +1,14 @@
+<repast.simphony.data2.engine.FileSinkDescriptor>
+  <name>FS1</name>
+  <dataSet>DS1</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>tick</string>
+    <string>EquilibriumTime</string>
+    <string>computeHarmony</string>
+    <string>ActiveCount</string>
+  </sourceIds>
+  <fileName>/Users/yilmaz/Desktop/ModelOutput.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

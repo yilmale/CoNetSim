@@ -18,6 +18,7 @@ import repast.simphony.util.ContextUtils;
 public class CoNetNodeGrid {
 	public int id;
 	public double activation;
+	public double old_activation;
 	public double decayrate;
 	public double MIN;
 	public double MAX;
@@ -31,6 +32,7 @@ public class CoNetNodeGrid {
 	public CoNetNodeGrid(int id, double activation, boolean evd, int numberOfNodeTypes, double dExcite, double dInhibit) {
 		this.id = id;
 		this.activation=activation;
+		this.old_activation=0;
 		this.decayrate = 0.05;
 		this.MIN = -1;
 		this.MAX=1;
@@ -60,20 +62,24 @@ public class CoNetNodeGrid {
 	
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
-		Context<CoNetNodeGrid> context = (Context)ContextUtils.getContext(this);
-		Grid<CoNetNodeGrid> grid = (Grid)context.getProjection("grid");
-		
-		VNQuery<CoNetNodeGrid> query = new VNQuery<CoNetNodeGrid>(grid, this);
+		Context<Object> context = (Context)ContextUtils.getContext(this);
+		Grid<Object> grid = (Grid)context.getProjection("grid");
+		double temp=this.activation;
+		VNQuery<Object> query = new VNQuery<Object>(grid, this);
 		
 		double netFlow =0;
-		for (CoNetNodeGrid agent : query.query()) {
-			if (agent.type == this.type) {
-				netFlow = netFlow + this.excitationStrength*agent.activation;
+		for (Object agent : query.query()) {
+		  if (agent instanceof CoNetNodeGrid)
+		  {
+			CoNetNodeGrid cnAgent = (CoNetNodeGrid) agent;
+			if (cnAgent.type == this.type) {
+				netFlow = netFlow + this.excitationStrength*cnAgent.activation;
 			}
 			else 
 			{
-				netFlow = netFlow + this.inhibitionStrength*agent.activation;
+				netFlow = netFlow + this.inhibitionStrength*cnAgent.activation;
 			}
+		  }
 		}
 		
 		if ((netFlow > 0) && (this.evidence == false)) {
@@ -86,6 +92,8 @@ public class CoNetNodeGrid {
 			this.activation = (this.activation*(1-this.decayrate)) + (netFlow*(this.activation-this.MIN));
 			this.activation = Math.max(-1, this.activation);
 		}
+		
+		this.old_activation=temp;
 	}
 	
 

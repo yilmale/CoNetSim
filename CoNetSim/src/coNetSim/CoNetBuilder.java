@@ -22,20 +22,8 @@ import repast.simphony.space.grid.RandomGridAdder;
 import repast.simphony.space.grid.SimpleGridAdder;
 import repast.simphony.space.grid.WrapAroundBorders;
 import repast.simphony.util.ContextUtils;
-import edu.uci.ics.jung.algorithms.layout.CircleLayout;
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.algorithms.layout.util.Relaxer;
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseMultigraph;
-import edu.uci.ics.jung.visualization.BasicVisualizationServer;
-import edu.uci.ics.jung.visualization.VisualizationViewer;
-import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
-import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
-
-import java.awt.Dimension;
 import java.util.Iterator;
 
-import javax.swing.JFrame;
 
 
 public class CoNetBuilder implements ContextBuilder<Object> {
@@ -75,9 +63,9 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		double defaultActivation = (double)p.getValue("defaultActivation");
 		double activationThreshold = (double)p.getValue("activationThreshold");
 		
-		int numberofNodeTypes = 10;
+		int numberofNodeTypes = 3;
 		
-		RunEnvironment.getInstance().endAt(100);
+		//RunEnvironment.getInstance().endAt(100);
 		
 		AsynchronousUpdateGrid(context,numNodes,defaultExcitation,numberofNodeTypes,defaultExcitation, defaultInhibition);
 		/*
@@ -100,7 +88,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 			else activations[i]=1;
 		}
 		
-		
+		CoordinatorGrid observer = new CoordinatorGrid(numNodes);
 	  // Create the initial agents and add to the context.
 		for(int i=0; i<numNodes; i++){
 			CoNetNodeGrid x;
@@ -110,8 +98,11 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 			else { 
 				x = new CoNetNodeGrid(i,activations[i], false, numberofNodeTypes, defaultExcitation, defaultInhibition);
 			}
+			observer.register(x);
 			context.add(x);
 		}
+		
+		context.add(observer);
 	}
 	
 	public void SyncronousUpdateNet(Context<Object> context, int numNodes, double density, 
