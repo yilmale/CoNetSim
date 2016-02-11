@@ -109,8 +109,8 @@ public class CoordinatorGrid {
 		Grid<Object> grid = (Grid)context.getProjection("grid");	
 		if (this.equilibriumReached == false) {
 			computeHarmony();
-			double activationUpdate=computeActivationDiff();	
-			activationUpdate=1;
+			//double activationUpdate=computeActivationDiff();	
+			double activationUpdate=1;
 			System.out.println("The activation differential is " + activationUpdate);
 			if (activationUpdate < THRESHOLD) {
 				this.equilibriumReached=true;
