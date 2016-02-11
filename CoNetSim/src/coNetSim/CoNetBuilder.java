@@ -62,12 +62,22 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		double defaultInhibition = (double)p.getValue("defaultInhibition");
 		double defaultActivation = (double)p.getValue("defaultActivation");
 		double activationThreshold = (double)p.getValue("activationThreshold");
+<<<<<<< HEAD
 		
 		
 		//RunEnvironment.getInstance().endAt(100);
 		
 		AsynchronousUpdateGrid(context,numNodes,defaultExcitation,
 				defaultExcitation, defaultInhibition, density, inhibitionRatio);
+=======
+		int nodeTypes = (int)p.getValue("nodeTypes");
+		int numberofNodeTypes = nodeTypes;
+		
+		//RunEnvironment.getInstance().endAt(100);
+		
+		AsynchronousUpdateGrid(context,numNodes,defaultExcitation,numberofNodeTypes,
+				defaultExcitation, defaultInhibition,activationThreshold,density);
+>>>>>>> 892790678e3469ee7b38d2b63a22ba29889202b4
 		/*
 		if (activationMode.compareTo("SYNCHRONOUS")==0) 
 			SyncronousUpdateNet(context,numNodes,density,inhibitionRatio,
@@ -80,7 +90,11 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 	
 	
 	public void AsynchronousUpdateGrid(Context<Object> context, int numNodes, double defaultActivation, 
+<<<<<<< HEAD
 			 double defaultExcitation, double defaultInhibition, double density, double inhibitR) {
+=======
+			int numberofNodeTypes, double defaultExcitation, double defaultInhibition, double actThr, double density) {
+>>>>>>> 892790678e3469ee7b38d2b63a22ba29889202b4
 		activations = new double[numNodes];	
 		for (int i=0; i<numNodes; i++) {
 			double rnd = RandomHelper.nextDoubleFromTo(0, 1);
@@ -88,9 +102,9 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 			else activations[i]=1;
 		}
 		
-		CoordinatorGrid observer = new CoordinatorGrid(numNodes);
+		CoordinatorGrid observer = new CoordinatorGrid(numNodes,actThr);
 	  // Create the initial agents and add to the context.
-		for(int i=0; i<numNodes; i++){
+		for(int i=0; i<numNodes*density; i++){
 			CoNetNodeGrid x;
 			if (activations[i]==1) {
 				x = new CoNetNodeGrid(i,activations[i], true,  

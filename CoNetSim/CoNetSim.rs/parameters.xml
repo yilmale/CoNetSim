@@ -20,5 +20,9 @@
 	<parameter name="activationThreshold"
 		displayName="Activation Threshold" type="double" defaultValue="0.3">
 	</parameter>
+	<parameter name="nodeTypes"
+		displayName="Node Types" type="int" defaultValue="3">
+	</parameter>
+	
 
 </parameters>
