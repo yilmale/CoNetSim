@@ -20,10 +20,12 @@ public class CoordinatorGrid {
 	public final double THRESHOLD = 0.001;
 	public boolean equilibriumReached;
 	public double equilibriumTime;
+	public double actThreshold;
 	
-	public CoordinatorGrid(int size) {
+	public CoordinatorGrid(int size, double threshold) {
 		registeredNodes = new ArrayList<CoNetNodeGrid>();
 		this.networkHarmony=0;
+		this.actThreshold=threshold;
 		this.equilibriumReached=false;
 		this.equilibriumTime=-1;
 		this.visited = new double[size][size];
@@ -59,7 +61,7 @@ public class CoordinatorGrid {
 		Iterator nodeItr = registeredNodes.iterator();
 		while (nodeItr.hasNext()) {
 			CoNetNodeGrid x= (CoNetNodeGrid) nodeItr.next();
-			if (x.activation > 0) activeCount++;
+			if (x.activation > this.actThreshold) activeCount++;
 		}
 		return activeCount;
 	}
