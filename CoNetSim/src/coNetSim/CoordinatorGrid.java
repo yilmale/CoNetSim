@@ -8,13 +8,13 @@ import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.ISchedule;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.query.space.grid.VNQuery;
+import repast.simphony.space.graph.Network;
+import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.util.ContextUtils;
 
 public class CoordinatorGrid {
 	public ArrayList<CoNetNodeGrid> registeredNodes;
-	double[][] visited;
-	double[] activations;
 	public double networkHarmony;
 	public final int MAXITERATION = 1;
 	public final double THRESHOLD = 0.001;
@@ -26,33 +26,15 @@ public class CoordinatorGrid {
 		this.networkHarmony=0;
 		this.equilibriumReached=false;
 		this.equilibriumTime=-1;
-		this.visited = new double[size][size];
-		this.activations = new double[size];
-		for (int i=0; i<size; i++) this.activations[i]=0;
-		for (int i = 0; i<size; i++)
-			for (int j=0; j< size; j++) 
-				this.visited[i][j]=0;
 	}
 	
 	
 	public void register(CoNetNodeGrid cn) {
 		registeredNodes.add(cn);
-		System.out.println("Registered node " + registeredNodes.get(registeredNodes.size()-1).id);
+		System.out.println("Registered node " + registeredNodes.get(registeredNodes.size()-1).id + " with activation: " + cn.activation);
 	}
 	
-	public double[] updateNodeActivations() {
-		
-		Iterator nodeItr = registeredNodes.iterator();
-		while (nodeItr.hasNext()) {
-			CoNetNodeGrid x= (CoNetNodeGrid) nodeItr.next();
-			this.activations[x.id]=x.activation;
-		}
-		return this.activations;
-	}
 	
-	public double[] getNodeActivations() {
-		return this.activations;
-	}
 	
 	public int getActiveCount() {
 		int activeCount = 0;
@@ -70,12 +52,27 @@ public class CoordinatorGrid {
 	}
 	
 	public double computeActivationDiff() {
+		Context<Object> context = ContextUtils.getContext(this);
+		Grid<Object> grid = (Grid)context.getProjection("grid");
+		Network<CoNetNodeGrid> net = (Network<CoNetNodeGrid>)context.getProjection("coherence network");
 		double aDiff=0;
-		Iterator nodeItr = registeredNodes.iterator();
+		Iterator<CoNetNodeGrid> nodeItr = net.getNodes().iterator();
 		while (nodeItr.hasNext()) {
 			CoNetNodeGrid x= (CoNetNodeGrid) nodeItr.next();
-			if (Math.abs(x.activation - x.old_activation) > aDiff) 
+			if (x!=null) {
+				if (Math.abs(x.activation-x.old_activation)==1) 
+						System.out.println("node: " + x.id + " activation: " + x.activation + "old:" + x.old_activation);
+			}
+			/*if (Math.abs(x.activation - x.old_activation) > aDiff)  {
 				aDiff=Math.abs(x.activation - x.old_activation);
+				System.out.println("node: " + x.id + "old: " + x.old_activation + "new: " + x.activation + " neighbors:");
+				Iterator<CoNetNodeGrid> nItr=net.getAdjacent(x).iterator();
+				while (nItr.hasNext()) {
+					CoNetNodeGrid myX = nItr.next();
+					System.out.println("node: " + myX.id + " activation: " + myX.activation);
+				}
+			}*/
+			
 		}
 		return aDiff;
 	}
@@ -84,33 +81,15 @@ public class CoordinatorGrid {
 		Context<Object> context = ContextUtils.getContext(this);
 		Grid<Object> grid = (Grid)context.getProjection("grid");
 		double nH=0;
-		Iterator nodeItr = registeredNodes.iterator();
-		while (nodeItr.hasNext()) {
-			CoNetNodeGrid x= (CoNetNodeGrid) nodeItr.next();
-			VNQuery<Object> query = new VNQuery<Object>(grid, x);
-			for (Object agent : query.query()) {
-			 if (agent instanceof CoNetNodeGrid)
-			 {
-			  CoNetNodeGrid cnAgent = (CoNetNodeGrid) agent;
-			  if ((visited[x.id][cnAgent.id]==0) && visited[cnAgent.id][x.id]==0)	{
-				visited[x.id][cnAgent.id]=1;
-				if (cnAgent.type == x.type) {
-					nH = nH + x.excitationStrength*x.activation*cnAgent.activation;
-				}
-				else 
-				{
-					nH = nH + x.inhibitionStrength*x.activation*cnAgent.activation;
-				}
-			  }
-			 }
-			}
+		Network<CoNetNodeGrid> net = (Network<CoNetNodeGrid>)context.getProjection("coherence network");
+		Iterator <RepastEdge<CoNetNodeGrid>> edgeItr = net.getEdges().iterator();
+		while (edgeItr.hasNext()) {
+			RepastEdge<CoNetNodeGrid> conetEdge = edgeItr.next();
+			nH = nH + conetEdge.getSource().activation*conetEdge.getTarget().activation*conetEdge.getWeight();
 		}
 		
-		this.networkHarmony=nH;
 		
-		for (int i = 0; i<registeredNodes.size(); i++)
-			for (int j=0; j< registeredNodes.size(); j++) 
-				visited[i][j]=0;
+		this.networkHarmony=nH;
 		
 		return this.networkHarmony;
 	}
@@ -125,11 +104,11 @@ public class CoordinatorGrid {
 	@ScheduledMethod(start=0,interval=1)
 	public void step() {
 		Context<Object> context = ContextUtils.getContext(this);
-		Grid<Object> grid = (Grid)context.getProjection("grid");
-		
+		Grid<Object> grid = (Grid)context.getProjection("grid");	
 		if (this.equilibriumReached == false) {
 			computeHarmony();
 			double activationUpdate=computeActivationDiff();	
+			activationUpdate=1;
 			System.out.println("The activation differential is " + activationUpdate);
 			if (activationUpdate < THRESHOLD) {
 				this.equilibriumReached=true;

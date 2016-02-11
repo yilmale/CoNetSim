@@ -3,7 +3,7 @@
 
 	<parameter name="randomSeed" displayName="Default Random Seed" type="int" defaultValue="__NULL__" /><parameter
 		name="numberOfNodes" displayName="Number of Nodes" type="int"
-		defaultValue="5">
+		defaultValue="2400">
 </parameter>
 	<parameter name="density" displayName="Network Density"
 		type="double" defaultValue="0.5">

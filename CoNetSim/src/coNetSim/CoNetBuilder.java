@@ -63,11 +63,11 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		double defaultActivation = (double)p.getValue("defaultActivation");
 		double activationThreshold = (double)p.getValue("activationThreshold");
 		
-		int numberofNodeTypes = 3;
 		
 		//RunEnvironment.getInstance().endAt(100);
 		
-		AsynchronousUpdateGrid(context,numNodes,defaultExcitation,numberofNodeTypes,defaultExcitation, defaultInhibition);
+		AsynchronousUpdateGrid(context,numNodes,defaultExcitation,
+				defaultExcitation, defaultInhibition, density, inhibitionRatio);
 		/*
 		if (activationMode.compareTo("SYNCHRONOUS")==0) 
 			SyncronousUpdateNet(context,numNodes,density,inhibitionRatio,
@@ -80,7 +80,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 	
 	
 	public void AsynchronousUpdateGrid(Context<Object> context, int numNodes, double defaultActivation, 
-			int numberofNodeTypes, double defaultExcitation, double defaultInhibition) {
+			 double defaultExcitation, double defaultInhibition, double density, double inhibitR) {
 		activations = new double[numNodes];	
 		for (int i=0; i<numNodes; i++) {
 			double rnd = RandomHelper.nextDoubleFromTo(0, 1);
@@ -93,10 +93,12 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		for(int i=0; i<numNodes; i++){
 			CoNetNodeGrid x;
 			if (activations[i]==1) {
-				x = new CoNetNodeGrid(i,activations[i], true, numberofNodeTypes, defaultExcitation, defaultInhibition);
+				x = new CoNetNodeGrid(i,activations[i], true,  
+						defaultExcitation, defaultInhibition,density,inhibitR);
 			}
 			else { 
-				x = new CoNetNodeGrid(i,activations[i], false, numberofNodeTypes, defaultExcitation, defaultInhibition);
+				x = new CoNetNodeGrid(i,activations[i], false,  
+						defaultExcitation, defaultInhibition,density, inhibitR);
 			}
 			observer.register(x);
 			context.add(x);
