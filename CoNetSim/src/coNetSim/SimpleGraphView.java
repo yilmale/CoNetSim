@@ -28,6 +28,7 @@ import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.random.RandomHelper;
 import repast.simphony.space.graph.Network;
+import repast.simphony.space.grid.Grid;
 import repast.simphony.util.ContextUtils;
 
 import java.util.Iterator;
@@ -57,8 +58,19 @@ public class SimpleGraphView {
         this.activationThreshold=actThreshold;
     }
     
-    public void addNode(CoNetNode cNode) {
+    public void addNode(CoNetNodeGrid cNode) {
     	g.addVertex((Integer)cNode.id);		
+    }
+    
+    public void updateActivations() {
+    	Context<Object> context = (Context)ContextUtils.getContext(this);
+		Grid<Object> grid = (Grid)context.getProjection("grid");
+		Network<CoNetNodeGrid> net = (Network<CoNetNodeGrid>)context.getProjection("coherence network");
+		Iterator<CoNetNodeGrid> nItr=net.getNodes().iterator();
+		while (nItr.hasNext()) {
+			CoNetNodeGrid x = nItr.next();
+			this.activations[x.id]=x.activation;
+		}
     }
     
     public void addEdge(int source, int target, double eWeight) {
@@ -131,13 +143,13 @@ public class SimpleGraphView {
     	g.addEdge(g.getEdgeCount(), i, node);*/
     	
     	Context<Object> context = ContextUtils.getContext(this);
-    	Network<CoNetNode> net = (Network<CoNetNode>)context.getProjection("coherence network");
-    	Iterator<CoNetNode> nIterator=net.getNodes().iterator();
+    	Network<CoNetNodeGrid> net = (Network<CoNetNodeGrid>)context.getProjection("coherence network");
+    	Iterator<CoNetNodeGrid> nIterator=net.getNodes().iterator();
     	while (nIterator.hasNext()) {
     		
     		Object cn = nIterator.next();
-    		if (cn instanceof CoNetNode) {
-    			CoNetNode cNode = (CoNetNode) cn;
+    		if (cn instanceof CoNetNodeGrid) {
+    			CoNetNodeGrid cNode = (CoNetNodeGrid) cn;
     			activations[cNode.id]=cNode.activation;
     		}
     	}

@@ -22,6 +22,7 @@ import repast.simphony.space.grid.RandomGridAdder;
 import repast.simphony.space.grid.SimpleGridAdder;
 import repast.simphony.space.grid.WrapAroundBorders;
 import repast.simphony.util.ContextUtils;
+
 import java.util.Iterator;
 
 
@@ -44,7 +45,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 		
 		GridFactoryFinder.createGridFactory(null).createGrid("grid", context, 
 				new GridBuilderParameters<Object>(new WrapAroundBorders(), 
-						new RandomGridAdder<Object>(), false, 50, 50));
+						new RandomGridAdder<Object>(), false, 5, 5));
 
 		ContinuousSpaceFactory spaceFactory = ContinuousSpaceFactoryFinder
 				.createContinuousSpaceFactory(null);
@@ -85,12 +86,15 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 			double defaultExcitation, double defaultInhibition, double actThr, double density, double inhibitR) 
 
 	{
+		Network<CoNetNodeGrid> net = (Network<CoNetNodeGrid>)context.getProjection("coherence network");
 		activations = new double[numNodes];	
 		for (int i=0; i<numNodes; i++) {
 			double rnd = RandomHelper.nextDoubleFromTo(0, 1);
-			if (rnd > 0.01) activations[i]=defaultActivation;
+			if (rnd > 0.1) activations[i]=defaultActivation;
 			else activations[i]=1;
 		}
+		
+		SimpleGraphView sgv = new SimpleGraphView(numNodes,actThr);
 		
 		CoordinatorGrid observer = new CoordinatorGrid(numNodes,actThr);
 	  // Create the initial agents and add to the context.
@@ -98,19 +102,26 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 			CoNetNodeGrid x;
 			if (activations[i]==1) {
 				x = new CoNetNodeGrid(i,activations[i], true,  
-						defaultExcitation, defaultInhibition,density,inhibitR);
+						defaultExcitation, defaultInhibition,density,inhibitR, sgv);
+				sgv.addNode(x);
 			}
 			else { 
 				x = new CoNetNodeGrid(i,activations[i], false,  
-						defaultExcitation, defaultInhibition,density, inhibitR);
+						defaultExcitation, defaultInhibition,density, inhibitR, sgv);
+				sgv.addNode(x);
 			}
-			observer.register(x);
 			context.add(x);
 		}
 		
 		context.add(observer);
+		
+		sgv.initialize();
+		
+		sgv.display();
+		context.add(sgv);
 	}
-	
+
+	/*
 	public void SyncronousUpdateNet(Context<Object> context, int numNodes, double density, 
 			double inhibitionRatio, double excitationStrength, double inhibitionStrength, 
 			double defaultActivation,double activationThreshold) {
@@ -277,7 +288,7 @@ public class CoNetBuilder implements ContextBuilder<Object> {
 
 		
 		context.add(ca);
-	}
+	}*/
 
 }
 

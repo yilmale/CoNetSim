@@ -7,6 +7,7 @@ import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.ISchedule;
 import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.parameter.Parameters;
 import repast.simphony.query.space.grid.VNQuery;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
@@ -14,16 +15,13 @@ import repast.simphony.space.grid.Grid;
 import repast.simphony.util.ContextUtils;
 
 public class CoordinatorGrid {
-	public ArrayList<CoNetNodeGrid> registeredNodes;
 	public double networkHarmony;
-	public final int MAXITERATION = 1;
 	public final double THRESHOLD = 0.001;
 	public boolean equilibriumReached;
 	public double equilibriumTime;
 	public double actThreshold;
 	
 	public CoordinatorGrid(int size, double threshold) {
-		registeredNodes = new ArrayList<CoNetNodeGrid>();
 		this.networkHarmony=0;
 		this.actThreshold=threshold;
 		this.equilibriumReached=false;
@@ -31,26 +29,21 @@ public class CoordinatorGrid {
 	}
 	
 	
-	public void register(CoNetNodeGrid cn) {
-		registeredNodes.add(cn);
-		System.out.println("Registered node " + registeredNodes.get(registeredNodes.size()-1).id + " with activation: " + cn.activation);
-	}
+
 	
 	
 	
 	public int getActiveCount() {
 		int activeCount = 0;
-		Iterator nodeItr = registeredNodes.iterator();
-		while (nodeItr.hasNext()) {
-			CoNetNodeGrid x= (CoNetNodeGrid) nodeItr.next();
-			if (x.activation > this.actThreshold) activeCount++;
-		}
+		
 		return activeCount;
 	}
 	
 	public int getPassiveCount() {
+		Parameters p = RunEnvironment.getInstance().getParameters();
+		int numNodes = (Integer)p.getValue("numberOfNodes");
 		int activeCount = getActiveCount();
-		return registeredNodes.size()-activeCount;
+		return numNodes-activeCount;
 	}
 	
 	public double computeActivationDiff() {
@@ -108,10 +101,10 @@ public class CoordinatorGrid {
 		Context<Object> context = ContextUtils.getContext(this);
 		Grid<Object> grid = (Grid)context.getProjection("grid");	
 		if (this.equilibriumReached == false) {
-			computeHarmony();
+			double nH=computeHarmony();
 			//double activationUpdate=computeActivationDiff();	
 			double activationUpdate=1;
-			System.out.println("The activation differential is " + activationUpdate);
+			System.out.println("The network harmony is " + nH);
 			if (activationUpdate < THRESHOLD) {
 				this.equilibriumReached=true;
 				ISchedule schedule = RunEnvironment.getInstance().getCurrentSchedule();

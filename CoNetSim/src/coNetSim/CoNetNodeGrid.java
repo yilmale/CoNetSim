@@ -30,10 +30,12 @@ public class CoNetNodeGrid {
 	public double vBlue;
 	public double vRed;
 	public boolean initialSetup;
+	public SimpleGraphView gVis;
 	
 	public CoNetNodeGrid(int id, double activation, boolean evd, 
-			double dExcite, double dInhibit, double density, double inhibitR) {
+			double dExcite, double dInhibit, double density, double inhibitR, SimpleGraphView gv) {
 		this.id = id;
+		this.gVis=gv;
 		this.initialSetup=false;
 		this.activation=activation;
 		this.old_activation=0;
@@ -61,7 +63,7 @@ public class CoNetNodeGrid {
 	}
 	
 	public double getRActivation() {
-		if (this.activation > 0) return 10*this.activation;
+		if (this.activation > 0) return Math.min(10, 3+10*this.activation);
 		else return 0;
 	}
 	
@@ -70,30 +72,31 @@ public class CoNetNodeGrid {
 		Context<Object> context = (Context)ContextUtils.getContext(this);
 		Grid<Object> grid = (Grid)context.getProjection("grid");
 		Network<CoNetNodeGrid> net = (Network<CoNetNodeGrid>)context.getProjection("coherence network");
-		double temp=this.activation;
+		this.old_activation=this.activation;
 		
-	
 		if (this.initialSetup==false) {
 		  this.initialSetup=true;
 		  VNQuery<Object> query = new VNQuery<Object>(grid, this);
 		  for (Object agent : query.query()) {
 			 if (agent instanceof CoNetNodeGrid) {		    	 
-				double rnd = RandomHelper.nextDoubleFromTo(0,1);
-				if (rnd <= this.conDensity) {
-					double irnd = RandomHelper.nextDoubleFromTo(0, 1);
-					if (irnd <= this.inhibitionRatio) {
-					  if (net.isAdjacent(this, (CoNetNodeGrid)agent)==false)	
+				if (RandomHelper.nextDoubleFromTo(0,1) <= this.conDensity) {
+					if (RandomHelper.nextDoubleFromTo(0, 1) <= this.inhibitionRatio) {
+					  if (net.isAdjacent(this, (CoNetNodeGrid)agent)==false) {	
 						net.addEdge(this, (CoNetNodeGrid)agent, this.inhibitionStrength);
+					    CoNetNodeGrid tmp = (CoNetNodeGrid) agent;
+					    this.gVis.addEdge(this.id, tmp.id, this.inhibitionStrength);}
 					}
 					else
 					{
-					  if (net.isAdjacent(this, (CoNetNodeGrid)agent)==false)
+					  if (net.isAdjacent(this, (CoNetNodeGrid)agent)==false) {
 						net.addEdge(this, (CoNetNodeGrid)agent, this.excitationStrength);
+					    CoNetNodeGrid tmp = (CoNetNodeGrid) agent;
+					    this.gVis.addEdge(this.id, tmp.id, this.excitationStrength);}
 					}
 				}
 			 }	
-		}
-		}		
+		  }
+	   }		
 		
 	   boolean netConnected = net.getAdjacent(this).iterator().hasNext();
 	   if ((this.evidence==false) && (netConnected==true)) {
@@ -101,9 +104,16 @@ public class CoNetNodeGrid {
 		Iterator<CoNetNodeGrid> myNeighbors = net.getAdjacent(this).iterator();
 		while (myNeighbors.hasNext()) {
 			CoNetNodeGrid xN = myNeighbors.next();
-			RepastEdge<CoNetNodeGrid> xE=net.getEdge(xN, this);
-			if (xE!=null)
-				netFlow = netFlow + xN.activation*xE.getWeight();		
+			RepastEdge<CoNetNodeGrid> xE1=net.getEdge(xN, this);
+			RepastEdge<CoNetNodeGrid> xE2=net.getEdge(this, xN);
+			if (xE1!=null)
+			{
+				netFlow = netFlow + xN.activation*xE1.getWeight();
+			}
+			else 
+			{
+				netFlow = netFlow + xN.activation*xE2.getWeight();
+			}
 		}
 		
 			
@@ -118,9 +128,8 @@ public class CoNetNodeGrid {
 			this.activation = Math.max(-1, this.activation);
 		}
 		
-		this.old_activation=temp;
-		
 	}
+	 System.out.println("Node: " + this.id + " activation: " + this.activation);
   }
 
 }
